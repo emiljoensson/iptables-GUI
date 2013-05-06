@@ -46,6 +46,7 @@ void MainWindow::refreshAllTabs()
 {
     this->refreshProfileTab();
     this->refreshServiceTab();
+    this->refreshCustomRulesTab();
 }
 
 /* Function: Initializing the current profile */
@@ -113,6 +114,23 @@ void MainWindow::refreshServiceTab()
 {
     firewall.updateProfileServices(firewall.getCurrentProfile()->getName());
     this->fillServiceRuleTable();
+}
+
+void MainWindow::refreshCustomRulesTab()
+{
+    QString pathString;
+    QTextStream pathStream(&pathString);
+    pathStream << firewall.getSystemPath() << "/profiles/" << firewall.getCurrentProfile()->getName() << "-customRules.txt";
+    QFile customRules(pathString);
+    customRules.open(QIODevice::ReadOnly | QIODevice::Text);
+    QTextStream in(&customRules);
+
+    ui->plainTextEdit_customRules->setPlainText(in.readAll());
+
+    customRules.close();
+
+    ui->label_customRulesFooter->setText("");
+    ui->pushButton_reloadCustomRules->setEnabled(false);
 }
 
 /* Function: Initializing first time use (no profile loaded) */

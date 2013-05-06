@@ -19,6 +19,7 @@ private slots:
     void refreshAllTabs();
     void refreshProfileTab();
     void refreshServiceTab();
+    void refreshCustomRulesTab();
     void firstTimeUse(bool trueOrFalse="true");
     void fillServiceRuleTable();
     void fillDefineRulesTable();
