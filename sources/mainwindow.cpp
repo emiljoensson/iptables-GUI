@@ -57,10 +57,6 @@ void MainWindow::refreshProfileTab()
     firewall.updateProfileInfo(firewall.getCurrentProfile()->getName());
     firewall.updateProfileInterfaces(firewall.getCurrentProfile()->getName());
 
-    /* Filling the service rule and defineRules table */
-    this->fillServiceRuleTable();
-    this->fillDefineRulesTable();
-
     /* Displaying current profile */
     ui->label_welcomeMessage->setText("Current profile:");
     ui->label_currentProfileName->setText(firewall.getCurrentProfile()->getName());
@@ -94,17 +90,23 @@ void MainWindow::refreshProfileTab()
     }
 
     /* (Re)Filling the change profile comboBox */
+    int nrOfProfiles = firewall.getProfileNames().size();
     ui->comboBox_changeProfileList->clear();
-    for (int i=0;i<firewall.getProfileNames().size();i++)
+    for (int i=0;i<nrOfProfiles;i++)
         ui->comboBox_changeProfileList->addItem(firewall.getProfileNames().at(i));
 
     //..and setting the currentIndex to our currentProfile's index
-    for (int i=0;i<firewall.getProfileNames().size();i++) {
+    for (int i=0;i<nrOfProfiles;i++) {
         if (firewall.getProfileNames().at(i) == firewall.getCurrentProfile()->getName()) {
             ui->comboBox_changeProfileList->setCurrentIndex(i);
             break;
         }
     }
+
+    ui->comboBox_interface->clear();
+    ui->comboBox_interface->addItem("Any");
+    for (int i=0;i<firewall.getCurrentProfile()->getInterfaceCount();i++)
+        ui->comboBox_interface->addItem(firewall.getCurrentProfile()->getInterface(i));
 
     ui->pushButton_saveProfile->setEnabled(FALSE);
     ui->pushButton_saveProfile_undo->setEnabled(FALSE);
@@ -226,7 +228,7 @@ void MainWindow::fillServiceRuleTable()
 /* Function: fill the defineRules table */
 void MainWindow::fillDefineRulesTable()
 {
-    //do the fill thingie
+    ui->tableWidget_defineRules->setRowCount(0);
 }
 
 /* pushButton: Start/Stop firewall */
@@ -354,7 +356,8 @@ void MainWindow::on_pushButton_createProfile_clicked()
         } else {
             //Re-filling the change profile comboBox
             ui->comboBox_changeProfileList->clear();
-            for (int i=0;i<firewall.getProfileNames().size();i++)
+            int nrOfProfiles = firewall.getProfileNames().size();
+            for (int i=0;i<nrOfProfiles;i++)
                 ui->comboBox_changeProfileList->addItem(firewall.getProfileNames().at(i));
         }
 
@@ -454,7 +457,61 @@ void MainWindow::on_pushButton_changeProfile_clicked()
 
 void MainWindow::on_pushButton_removeSelectedServices_clicked()
 {
-    //firewall.getCurrentProfile()->deleteService(ui->tableWidget_serviceRules->currentRow());
     ui->tableWidget_serviceRules->removeRow(ui->tableWidget_serviceRules->currentRow());
-    //firewall.saveServices();
+}
+
+void MainWindow::on_checkBox_sIP_stateChanged(int arg1)
+{
+    if (arg1 == 2)
+        arg1 = 1;
+    ui->lineEdit_sIP->setEnabled(arg1);
+}
+
+void MainWindow::on_checkBox_sPort_stateChanged(int arg1)
+{
+    if (arg1 == 2)
+        arg1 = 1;
+    ui->spinBox_sPort->setEnabled(arg1);
+}
+
+void MainWindow::on_checkBox_dIP_stateChanged(int arg1)
+{
+    if (arg1 == 2)
+        arg1 = 1;
+    ui->lineEdit_dIP->setEnabled(arg1);
+}
+
+void MainWindow::on_checkBox_dPort_stateChanged(int arg1)
+{
+    if (arg1 == 2)
+        arg1 = 1;
+    ui->spinBox_dPort->setEnabled(arg1);
+}
+
+void MainWindow::on_checkBox_connectionAmount_stateChanged(int arg1)
+{
+    if (arg1 == 2)
+        arg1 = 1;
+    ui->label_maxActive->setEnabled(arg1);
+    ui->spinBox_maxActive->setEnabled(arg1);
+}
+
+void MainWindow::on_checkBox_connectionRate_stateChanged(int arg1)
+{
+    if (arg1 == 2)
+        arg1 = 1;
+    ui->label_perSecond->setEnabled(arg1);
+    ui->spinBox_perSecond->setEnabled(arg1);
+}
+
+void MainWindow::on_pushButton_addRule_clicked()
+{
+    if (ui->lineEdit_ruleAlias->text() == "" || ui->lineEdit_ruleAlias->text() == "Alias")
+        ui->label_addRuleError->setText("ERROR: Invalid alias");
+    else {
+        ui->tableWidget_defineRules->setRowCount(ui->tableWidget_defineRules->rowCount()+1);
+        QTableWidgetItem* name = new QTableWidgetItem(QString("asd"));
+        ui->tableWidget_defineRules->setItem(0,0,name);
+        ui->label_addRuleError->setText("");
+    }
 }

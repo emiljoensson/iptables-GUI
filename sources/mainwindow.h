@@ -16,6 +16,7 @@ public:
     ~MainWindow();
 
 private slots:
+    //Custom functions
     void refreshAllTabs();
     void refreshProfileTab();
     void refreshServiceTab();
@@ -23,6 +24,7 @@ private slots:
     void firstTimeUse(bool trueOrFalse="true");
     void fillServiceRuleTable();
     void fillDefineRulesTable();
+
     void on_pushButton_startStop_clicked();
     void on_pushButton_reloadCustomRules_clicked();
     void on_plainTextEdit_customRules_textChanged();
@@ -40,6 +42,15 @@ private slots:
     void on_pushButton_saveProfile_undo_clicked();
     void on_pushButton_changeProfile_clicked();
     void on_pushButton_removeSelectedServices_clicked();
+
+    //Rules tab
+    void on_checkBox_sIP_stateChanged(int arg1);
+    void on_checkBox_sPort_stateChanged(int arg1);
+    void on_checkBox_dIP_stateChanged(int arg1);
+    void on_checkBox_dPort_stateChanged(int arg1);
+    void on_checkBox_connectionAmount_stateChanged(int arg1);
+    void on_checkBox_connectionRate_stateChanged(int arg1);
+    void on_pushButton_addRule_clicked();
 
 private:
     Ui::MainWindow *ui;

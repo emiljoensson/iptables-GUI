@@ -27,7 +27,7 @@
     <property name="geometry">
      <rect>
       <x>5</x>
-      <y>5</y>
+      <y>4</y>
       <width>760</width>
       <height>518</height>
      </rect>
@@ -935,10 +935,13 @@
       <string>Define Rules</string>
      </attribute>
      <widget class="QLineEdit" name="lineEdit_sIP">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
       <property name="geometry">
        <rect>
         <x>340</x>
-        <y>10</y>
+        <y>8</y>
         <width>170</width>
         <height>27</height>
        </rect>
@@ -970,104 +973,14 @@
        <string>Priority</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_sIP">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>220</x>
-        <y>10</y>
-        <width>100</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Source IP</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_dIP">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>220</x>
-        <y>70</y>
-        <width>101</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Destination IP</string>
-      </property>
-     </widget>
      <widget class="QLineEdit" name="lineEdit_dIP">
       <property name="enabled">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="geometry">
        <rect>
         <x>340</x>
-        <y>70</y>
-        <width>170</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_sPort">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>220</x>
-        <y>40</y>
-        <width>100</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Source port</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_sPort">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>340</x>
-        <y>40</y>
-        <width>170</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_dPort">
-      <property name="geometry">
-       <rect>
-        <x>220</x>
-        <y>100</y>
-        <width>120</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Destination port</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_dPort">
-      <property name="geometry">
-       <rect>
-        <x>340</x>
-        <y>100</y>
+        <y>68</y>
         <width>170</width>
         <height>27</height>
        </rect>
@@ -1183,12 +1096,12 @@
      </widget>
      <widget class="QCheckBox" name="checkBox_connectionAmount">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
         <x>540</x>
-        <y>40</y>
+        <y>10</y>
         <width>190</width>
         <height>27</height>
        </rect>
@@ -1198,9 +1111,12 @@
       </property>
      </widget>
      <widget class="Line" name="line">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
       <property name="geometry">
        <rect>
-        <x>183</x>
+        <x>173</x>
         <y>10</y>
         <width>31</width>
         <height>110</height>
@@ -1216,7 +1132,7 @@
         <x>513</x>
         <y>10</y>
         <width>20</width>
-        <height>120</height>
+        <height>140</height>
        </rect>
       </property>
       <property name="orientation">
@@ -1230,7 +1146,7 @@
       <property name="geometry">
        <rect>
         <x>660</x>
-        <y>70</y>
+        <y>40</y>
         <width>78</width>
         <height>27</height>
        </rect>
@@ -1243,7 +1159,7 @@
       <property name="geometry">
        <rect>
         <x>540</x>
-        <y>70</y>
+        <y>40</y>
         <width>100</width>
         <height>27</height>
        </rect>
@@ -1259,7 +1175,7 @@
       <property name="geometry">
        <rect>
         <x>540</x>
-        <y>130</y>
+        <y>100</y>
         <width>110</width>
         <height>27</height>
        </rect>
@@ -1275,7 +1191,7 @@
       <property name="geometry">
        <rect>
         <x>660</x>
-        <y>130</y>
+        <y>100</y>
         <width>78</width>
         <height>27</height>
        </rect>
@@ -1283,12 +1199,12 @@
      </widget>
      <widget class="QCheckBox" name="checkBox_connectionRate">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
         <x>540</x>
-        <y>100</y>
+        <y>70</y>
         <width>190</width>
         <height>27</height>
        </rect>
@@ -1387,7 +1303,7 @@
        </property>
       </column>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_alias">
+     <widget class="QLineEdit" name="lineEdit_ruleAlias">
       <property name="geometry">
        <rect>
         <x>5</x>
@@ -1400,26 +1316,138 @@
        <string>Alias</string>
       </property>
      </widget>
-     <widget class="QCheckBox" name="checkBox_connectionAmount_2">
+     <widget class="QSpinBox" name="spinBox_dPort">
       <property name="enabled">
-       <bool>true</bool>
+       <bool>false</bool>
       </property>
       <property name="geometry">
        <rect>
-        <x>540</x>
+        <x>340</x>
+        <y>98</y>
+        <width>90</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <number>0</number>
+      </property>
+      <property name="maximum">
+       <number>65535</number>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+     </widget>
+     <widget class="QSpinBox" name="spinBox_sPort">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>340</x>
+        <y>38</y>
+        <width>90</width>
+        <height>25</height>
+       </rect>
+      </property>
+      <property name="minimum">
+       <number>0</number>
+      </property>
+      <property name="maximum">
+       <number>65535</number>
+      </property>
+      <property name="value">
+       <number>0</number>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_sIP">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
         <y>10</y>
-        <width>190</width>
-        <height>27</height>
+        <width>91</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Source IP</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_sPort">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>40</y>
+        <width>100</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Source Port</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_dIP">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>70</y>
+        <width>120</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Destination IP</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_dPort">
+      <property name="geometry">
+       <rect>
+        <x>200</x>
+        <y>100</y>
+        <width>130</width>
+        <height>21</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Destination Port</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_rateInfo">
+      <property name="enabled">
+       <bool>false</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>534</x>
+        <y>138</y>
+        <width>210</width>
+        <height>10</height>
        </rect>
       </property>
       <property name="font">
        <font>
-        <weight>75</weight>
-        <bold>true</bold>
+        <pointsize>8</pointsize>
+        <italic>true</italic>
        </font>
       </property>
       <property name="text">
-       <string>Enable rate limitations</string>
+       <string>Rate limits are based on per IP-address</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_addRuleError">
+      <property name="geometry">
+       <rect>
+        <x>275</x>
+        <y>137</y>
+        <width>240</width>
+        <height>15</height>
+       </rect>
+      </property>
+      <property name="autoFillBackground">
+       <bool>false</bool>
+      </property>
+      <property name="text">
+       <string/>
       </property>
      </widget>
     </widget>
