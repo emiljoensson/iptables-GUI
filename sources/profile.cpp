@@ -83,7 +83,7 @@ QString Profile::getAllServices()
     int size = services.size();
     for (int i=0;i<size;i++) {
         tmp = this->services.at(i);
-        out << tmp->getName() << ", port " << tmp->getPort() << " (" << tmp->getProtocol() << ")" << endl;
+        out << tmp->getName() << "," << tmp->getPort() << "," << tmp->getProtocol() << "," << tmp->getAction() << "\n";
     }
     return allServices;
 }

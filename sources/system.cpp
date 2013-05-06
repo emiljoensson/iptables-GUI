@@ -34,14 +34,14 @@ System::System()
     profileList.close();
 
     if (nrOfProfiles > 0)
-        this->updateCurrentProfile(currentProfileName);
+        this->changeCurrentProfile(currentProfileName);
 }
 
 System::~System() {
     delete this->currentProfile;
 }
 
-void System::updateCurrentProfile(QString name)
+void System::changeCurrentProfile(QString name)
 {
     // Calling update info function
     this->updateProfileInfo(name);
@@ -51,6 +51,21 @@ void System::updateCurrentProfile(QString name)
 
     // Calling update services function
     this->updateProfileServices(name);
+
+    //Rebuilding the profileList so that the current one is on top
+    QString pathString;
+    QTextStream pathStream(&pathString);
+    pathStream << this->systemPath << "/profileList.txt";
+    QFile profileList(pathString);
+    profileList.open(QIODevice::WriteOnly | QIODevice::Text);
+    QTextStream out(&profileList);
+    out << this->profileNames.size() << "\n";
+    out << this->currentProfile->getName() << "\n";
+
+    for (int i=0;i<this->profileNames.size();i++)
+        out << this->profileNames.at(i) << "\n";
+
+    profileList.close();
 }
 
 void System::updateProfileInfo(QString name)
@@ -109,27 +124,6 @@ void System::updateProfileServices(QString name)
     currentProfileServices.close();
 }
 
-void System::changeCurrentProfile(QString name)
-{
-    //Loading the new profile
-    this->updateCurrentProfile(name);
-
-    //Rebuilding the profileList so that the current one is on top
-    QString pathString;
-    QTextStream pathStream(&pathString);
-    pathStream << this->systemPath << "/profileList.txt";
-    QFile profileList(pathString);
-    profileList.open(QIODevice::WriteOnly | QIODevice::Text);
-    QTextStream out(&profileList);
-    out << this->profileNames.size() << "\n";
-    out << this->currentProfile->getName() << "\n";
-
-    for (int i=0;i<this->profileNames.size();i++)
-        out << this->profileNames.at(i) << "\n";
-
-    profileList.close();
-}
-
 Profile* System::getCurrentProfile() const
 {
     return this->currentProfile;
@@ -173,6 +167,18 @@ void System::saveCurrentProfile(std::vector<QString> interfaces, QString default
     this->updateProfileInfo(this->currentProfile->getName());
 }
 
+void System::saveServices()
+{
+    QString pathString;
+    QTextStream pathStream(&pathString);
+    pathStream << this->getSystemPath() << "/profiles/" << this->currentProfile->getName() << "-services.txt";
+    QFile serviceRulesFile(pathString);
+    serviceRulesFile.open(QIODevice::WriteOnly | QIODevice::Text);
+    QTextStream out(&serviceRulesFile);
+    out << this->getCurrentProfile()->getAllServices();
+    serviceRulesFile.close();
+}
+
 void System::start()
 {
     //do the start thingie
@@ -193,6 +199,11 @@ bool System::getStatus() const
 bool System::getFirstTimeUse() const
 {
     return this->firstTimeUse;
+}
+
+QString System::getSystemPath() const
+{
+    return this->systemPath;
 }
 
 QVector<Service*> System::getDefaultServices()
@@ -282,7 +293,7 @@ void System::createProfile(QString name, std::vector<QString> interfaces, QStrin
     profileList.close();
 
     if (this->firstTimeUse == TRUE) {
-        this->updateCurrentProfile(name);
+        this->changeCurrentProfile(name);
         this->firstTimeUse = FALSE;
     }
 }

@@ -16,10 +16,12 @@ public:
     ~MainWindow();
 
 private slots:
-    void loadCurrentProfile(QString whatToUpdate="all");
+    void refreshAllTabs();
+    void refreshProfileTab();
+    void refreshServiceTab();
     void firstTimeUse(bool trueOrFalse="true");
     void fillServiceRuleTable();
-    void fillDefineRulesTale();
+    void fillDefineRulesTable();
     void on_pushButton_startStop_clicked();
     void on_pushButton_reloadCustomRules_clicked();
     void on_plainTextEdit_customRules_textChanged();

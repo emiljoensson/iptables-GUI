@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     /* Loading profiles if there are any, otherwise load firstTimeUse mode */
     if (firewall.getFirstTimeUse() == FALSE) {
-        this->loadCurrentProfile();
+        this->refreshAllTabs();
     } else {
         this->firstTimeUse();
     }
@@ -42,22 +42,22 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::refreshAllTabs()
+{
+    this->refreshProfileTab();
+    this->refreshServiceTab();
+}
+
 /* Function: Initializing the current profile */
-void MainWindow::loadCurrentProfile(QString whatToLoad)
+void MainWindow::refreshProfileTab()
 {
     /* Importing currentProfile */
-    if (whatToLoad == "all")
-        firewall.updateCurrentProfile(firewall.getCurrentProfile()->getName());
-    else if (whatToLoad == "info")
-        firewall.updateProfileInfo(firewall.getCurrentProfile()->getName());
-    else if (whatToLoad == "interfaces")
-        firewall.updateProfileInterfaces(firewall.getCurrentProfile()->getName());
-    else if (whatToLoad == "services")
-        firewall.updateProfileServices(firewall.getCurrentProfile()->getName());
+    firewall.updateProfileInfo(firewall.getCurrentProfile()->getName());
+    firewall.updateProfileInterfaces(firewall.getCurrentProfile()->getName());
 
     /* Filling the service rule and defineRules table */
     this->fillServiceRuleTable();
-    this->fillDefineRulesTale();
+    this->fillDefineRulesTable();
 
     /* Displaying current profile */
     ui->label_welcomeMessage->setText("Current profile:");
@@ -107,6 +107,12 @@ void MainWindow::loadCurrentProfile(QString whatToLoad)
     ui->pushButton_saveProfile->setEnabled(FALSE);
     ui->pushButton_saveProfile_undo->setEnabled(FALSE);
     ui->label_changesDetected->setText("");
+}
+
+void MainWindow::refreshServiceTab()
+{
+    firewall.updateProfileServices(firewall.getCurrentProfile()->getName());
+    this->fillServiceRuleTable();
 }
 
 /* Function: Initializing first time use (no profile loaded) */
@@ -197,7 +203,7 @@ void MainWindow::fillServiceRuleTable()
 }
 
 /* Function: fill the defineRules table */
-void MainWindow::fillDefineRulesTale()
+void MainWindow::fillDefineRulesTable()
 {
     //do the fill thingie
 }
@@ -225,7 +231,10 @@ void MainWindow::on_pushButton_startStop_clicked()
 /* pushButton: Reload custom rules */
 void MainWindow::on_pushButton_reloadCustomRules_clicked()
 {
-    QFile customRulesFile("/home/emil/Desktop/customRules.txt");
+    QString pathString;
+    QTextStream pathStream(&pathString);
+    pathStream << firewall.getSystemPath() << "/profiles/" << firewall.getCurrentProfile()->getName() << "-customRules.txt";
+    QFile customRulesFile(pathString);
     customRulesFile.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream out(&customRulesFile);
     out << ui->plainTextEdit_customRules->toPlainText();
@@ -281,6 +290,7 @@ void MainWindow::on_pushButton_saveServices_clicked()
         /* Passing our typecasted objects as parameters to editService function */
         firewall.getCurrentProfile()->editService(i, name, port->value(), protocol->currentText(), action->currentText());
     }
+    firewall.saveServices();
     ui->label_editStatus->setText("Changes has been saved.");
 }
 
@@ -317,7 +327,7 @@ void MainWindow::on_pushButton_createProfile_clicked()
         ui->listWidget_interfaces->clear();
 
         if (firstProfile == TRUE) {
-            this->loadCurrentProfile();
+            this->refreshAllTabs();
             this->firstTimeUse(FALSE);
         } else {
             //Re-filling the change profile comboBox
@@ -349,7 +359,7 @@ void MainWindow::on_pushButton_saveProfile_clicked()
     ui->pushButton_saveProfile_undo->setEnabled(FALSE);
     ui->label_changesDetected->setText("");
     ui->listWidget_interfaces_edit->clear();
-    this->loadCurrentProfile();
+    this->refreshProfileTab();
 }
 
 /* pushButton: Add interface - create */
@@ -407,13 +417,15 @@ void MainWindow::on_pushButton_saveProfile_undo_clicked()
     ui->pushButton_saveProfile_undo->setEnabled(FALSE);
     ui->label_changesDetected->setText("");
     ui->listWidget_interfaces_edit->clear();
-    this->loadCurrentProfile();
+    this->refreshProfileTab();
 }
 
 void MainWindow::on_pushButton_changeProfile_clicked()
 {
     int tmpIndex = ui->comboBox_changeProfileList->currentIndex();
     firewall.changeCurrentProfile(ui->comboBox_changeProfileList->currentText());
-    this->loadCurrentProfile();
     ui->comboBox_changeProfileList->setCurrentIndex(tmpIndex);
+
+    this->refreshProfileTab();
+    this->refreshServiceTab();
 }

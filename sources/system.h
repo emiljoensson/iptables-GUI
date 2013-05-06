@@ -17,18 +17,19 @@ private:
 public:
     System();
     ~System();
-    void updateCurrentProfile(QString name);
+    void changeCurrentProfile(QString name);
     void updateProfileInfo(QString name);
     void updateProfileInterfaces(QString name);
     void updateProfileServices(QString name);
-    void changeCurrentProfile(QString name);
     Profile* getCurrentProfile() const;
     std::vector<QString> getProfileNames() const;
     void saveCurrentProfile(std::vector<QString> interfaces, QString defaultPolicyIN, QString defaultPolicyOUT);
+    void saveServices();
     void start();
     void stop();
     bool getStatus() const;
     bool getFirstTimeUse() const;
+    QString getSystemPath() const;
     QVector<Service*> getDefaultServices();
     void createProfile(QString name, std::vector<QString> interfaces, QString defaultPolicyIN, QString defaultPolicyOUT);
 };

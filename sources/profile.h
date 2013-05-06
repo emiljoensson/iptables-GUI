@@ -37,7 +37,8 @@ public:
     void editService(int index, QString name, int port, QString protocol, QString action);
     QString getAllServices();
     int getServiceCount() const;
-    void initializeServices();
+    void initializeServices(); // delete this
+
 
     /* Rules */
     Rule getRule(int index) const;
