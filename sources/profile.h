@@ -6,6 +6,7 @@
 #include <vector>
 #include <QDateTime>
 #include <QTextStream>
+#include <QVector>
 
 class Profile
 {

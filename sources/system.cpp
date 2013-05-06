@@ -34,16 +34,27 @@ System::System()
     profileList.close();
 
     if (nrOfProfiles > 0)
-        this->importCurrentProfile(currentProfileName);
+        this->updateCurrentProfile(currentProfileName);
 }
 
 System::~System() {
     delete this->currentProfile;
 }
 
-void System::importCurrentProfile(QString name)
+void System::updateCurrentProfile(QString name)
 {
-    //Get the profile info
+    // Calling update info function
+    this->updateProfileInfo(name);
+
+    // Calling update interfaces function
+    this->updateProfileInterfaces(name);
+
+    // Calling update services function
+    this->updateProfileServices(name);
+}
+
+void System::updateProfileInfo(QString name)
+{
     QString pathString;
     QTextStream pathStream(&pathString);
     pathStream << this->systemPath << "/profiles/" << name << ".txt";
@@ -52,8 +63,10 @@ void System::importCurrentProfile(QString name)
     QTextStream in(&profileList);
     this->currentProfile = new Profile(in.readLine(), in.readLine(), in.readLine(), in.readLine(), in.readLine());
     profileList.close();
+}
 
-    //Get the interfaces
+void System::updateProfileInterfaces(QString name)
+{
     QString pathString2;
     QTextStream pathStream2(&pathString2);
     pathStream2 << this->systemPath << "/profiles/" << name << "-interfaces.txt";
@@ -66,10 +79,40 @@ void System::importCurrentProfile(QString name)
     currentProfileInterfaces.close();
 }
 
+void System::updateProfileServices(QString name)
+{
+    QString pathString3;
+    QTextStream pathStream3(&pathString3);
+    pathStream3 << this->systemPath << "/profiles/" << name << "-services.txt";
+    QFile currentProfileServices(pathString3);
+    currentProfileServices.open(QIODevice::ReadOnly | QIODevice::Text);
+    QTextStream in3(&currentProfileServices);
+
+    QString serviceName, serviceProtocol, serviceAction;
+    int servicePort, varCount=0;
+    while (in3.atEnd() == false) {
+        QString line = in3.readLine(); // contains several lines of text
+        QStringList service = line.split(",", QString::SkipEmptyParts);
+        foreach (QString var, service) {
+            if ((varCount % 4) == 0)
+                serviceName = var;
+            else if ((varCount % 4) == 1)
+                servicePort = var.toInt();
+            else if ((varCount % 4) == 2)
+                serviceProtocol = var;
+            else if ((varCount % 4) == 3)
+                serviceAction = var;
+            varCount++;
+        }
+        this->currentProfile->addService(serviceName, servicePort, serviceProtocol, serviceAction);
+    }
+    currentProfileServices.close();
+}
+
 void System::changeCurrentProfile(QString name)
 {
     //Loading the new profile
-    this->importCurrentProfile(name);
+    this->updateCurrentProfile(name);
 
     //Rebuilding the profileList so that the current one is on top
     QString pathString;
@@ -127,7 +170,7 @@ void System::saveCurrentProfile(std::vector<QString> interfaces, QString default
     currentProfileInterfaces.close();
 
     //Reload the currentProfile with the new changes
-    this->importCurrentProfile(this->currentProfile->getName());
+    this->updateProfileInfo(this->currentProfile->getName());
 }
 
 void System::start()
@@ -150,6 +193,25 @@ bool System::getStatus() const
 bool System::getFirstTimeUse() const
 {
     return this->firstTimeUse;
+}
+
+QVector<Service*> System::getDefaultServices()
+{
+    QVector<Service*> returnVal;
+    returnVal.push_back(new Service("FTP", 21, "tcp", "drop"));
+    returnVal.push_back(new Service("SSH", 22, "tcp", "accept"));
+    returnVal.push_back(new Service("Telnet", 23, "tcp", "drop"));
+    returnVal.push_back(new Service("SMTP", 25, "tcp", "drop"));
+    returnVal.push_back(new Service("DNS", 53, "tcp/udp", "drop"));
+    returnVal.push_back(new Service("HTTP", 80, "tcp", "accept"));
+    returnVal.push_back(new Service("HTTPS", 443, "tcp", "drop"));
+    returnVal.push_back(new Service("NTP", 123, "udp", "drop"));
+    returnVal.push_back(new Service("IMAP", 143, "tcp", "drop"));
+    returnVal.push_back(new Service("SNMP", 161, "udp", "drop"));
+    returnVal.push_back(new Service("SMB", 445, "tcp", "drop"));
+    returnVal.push_back(new Service("PPTP", 1723, "tcp", "drop"));
+    returnVal.push_back(new Service("MySQL", 3306, "tcp", "drop"));
+    return returnVal;
 }
 
 void System::createProfile(QString name, std::vector<QString> interfaces, QString defaultPolicyIN, QString defaultPolicyOUT)
@@ -179,32 +241,48 @@ void System::createProfile(QString name, std::vector<QString> interfaces, QStrin
     QFile newProfileInterfaces(pathString2);
     newProfileInterfaces.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream out2(&newProfileInterfaces);
+
     out2 << nrOfInterfaces << "\n";
     for (int i=0;i<nrOfInterfaces;i++)
         out2 << interfaces.at(i) << "\n";
+
     newProfileInterfaces.close();
 
-    //Wring profile list to profileList.txt
+    //Writing the default services to profile's services file
     QString pathString3;
     QTextStream pathStream3(&pathString3);
-    pathStream3 << this->systemPath << "/profileList.txt";
-    QFile profileList(pathString3);
+    pathStream3 << this->systemPath << "/profiles/" << name << "-services.txt";
+    QFile newProfileServices(pathString3);
+    newProfileServices.open(QIODevice::WriteOnly | QIODevice::Text);
+    QTextStream out3(&newProfileServices);
+
+    for (int i=0;i<this->getDefaultServices().size();i++)
+        out3 << this->getDefaultServices().at(i)->getService() << "\n";
+
+    newProfileServices.close();
+
+    //Wring profile list to profileList.txt
+    QString pathString4;
+    QTextStream pathStream4(&pathString4);
+    pathStream4 << this->systemPath << "/profileList.txt";
+    QFile profileList(pathString4);
     profileList.open(QIODevice::WriteOnly | QIODevice::Text);
-    QTextStream out3(&profileList);
-    out3 << this->profileNames.size() << "\n";
+    QTextStream out4(&profileList);
+
+    out4 << this->profileNames.size() << "\n";
 
     if (this->firstTimeUse == TRUE)
-        out3 << name << "\n";
+        out4 << name << "\n";
     else
-        out3 << this->currentProfile->getName() << "\n";
+        out4 << this->currentProfile->getName() << "\n";
 
     for (int i=0;i<this->profileNames.size();i++)
-        out3 << this->profileNames.at(i) << "\n";
+        out4 << this->profileNames.at(i) << "\n";
 
     profileList.close();
 
     if (this->firstTimeUse == TRUE) {
-        this->importCurrentProfile(name);
+        this->updateCurrentProfile(name);
         this->firstTimeUse = FALSE;
     }
 }

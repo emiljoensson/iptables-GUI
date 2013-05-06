@@ -3,7 +3,7 @@
 Service::Service()
 {
     this->name = "NULL";
-    this->port = NULL;
+    this->port = 0;
     this->protocol = "NULL";
     this->action = "NULL";
 }
@@ -14,6 +14,13 @@ Service::Service(QString name, int port, QString protocol, QString action)
     this->port = port;
     this->protocol = protocol;
     this->action = action;
+}
+
+QString Service::getService() const {
+    QString returnVal;
+    QTextStream stringStream(&returnVal);
+    stringStream << this->name << "," << this->port << "," << this->protocol << "," << this->action;
+    return returnVal;
 }
 
 QString Service::getName() const {

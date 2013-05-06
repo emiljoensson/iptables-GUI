@@ -2,6 +2,7 @@
 #define SERVICE_H
 
 #include <QString>
+#include <QTextStream>
 
 class Service
 {
@@ -13,6 +14,7 @@ private:
 public:
     Service();
     Service(QString name, int port, QString protocol, QString action);
+    QString getService() const;
     QString getName() const;
     int getPort() const;
     QString getProtocol() const;

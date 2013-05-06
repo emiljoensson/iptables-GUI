@@ -16,7 +16,7 @@ public:
     ~MainWindow();
 
 private slots:
-    void loadCurrentProfile();
+    void loadCurrentProfile(QString whatToUpdate="all");
     void firstTimeUse(bool trueOrFalse="true");
     void fillServiceRuleTable();
     void fillDefineRulesTale();

@@ -7,7 +7,6 @@ Profile::Profile(QString name, QString defaultPolicyIN, QString defaultPolicyOUT
     this->defaultPolicyOUT = defaultPolicyOUT;
     this->createdDate = createdDate;
     this->editedDate = editedDate;
-    this->initializeServices();
 }
 
 QString Profile::getSystemTime() const

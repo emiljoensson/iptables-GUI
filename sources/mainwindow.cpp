@@ -43,10 +43,17 @@ MainWindow::~MainWindow()
 }
 
 /* Function: Initializing the current profile */
-void MainWindow::loadCurrentProfile()
+void MainWindow::loadCurrentProfile(QString whatToLoad)
 {
     /* Importing currentProfile */
-    firewall.importCurrentProfile(firewall.getCurrentProfile()->getName());
+    if (whatToLoad == "all")
+        firewall.updateCurrentProfile(firewall.getCurrentProfile()->getName());
+    else if (whatToLoad == "info")
+        firewall.updateProfileInfo(firewall.getCurrentProfile()->getName());
+    else if (whatToLoad == "interfaces")
+        firewall.updateProfileInterfaces(firewall.getCurrentProfile()->getName());
+    else if (whatToLoad == "services")
+        firewall.updateProfileServices(firewall.getCurrentProfile()->getName());
 
     /* Filling the service rule and defineRules table */
     this->fillServiceRuleTable();

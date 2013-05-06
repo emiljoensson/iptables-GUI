@@ -4,6 +4,7 @@
 #include "service.h"
 #include "profile.h"
 #include <QFile>
+#include <QStandardItem>
 
 class System
 {
@@ -16,7 +17,10 @@ private:
 public:
     System();
     ~System();
-    void importCurrentProfile(QString name);
+    void updateCurrentProfile(QString name);
+    void updateProfileInfo(QString name);
+    void updateProfileInterfaces(QString name);
+    void updateProfileServices(QString name);
     void changeCurrentProfile(QString name);
     Profile* getCurrentProfile() const;
     std::vector<QString> getProfileNames() const;
@@ -25,6 +29,7 @@ public:
     void stop();
     bool getStatus() const;
     bool getFirstTimeUse() const;
+    QVector<Service*> getDefaultServices();
     void createProfile(QString name, std::vector<QString> interfaces, QString defaultPolicyIN, QString defaultPolicyOUT);
 };
 
