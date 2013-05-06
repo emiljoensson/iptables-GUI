@@ -33,7 +33,7 @@
      </rect>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>0</number>
     </property>
     <widget class="QWidget" name="tab_profile">
      <property name="enabled">
@@ -894,6 +894,38 @@
        <string/>
       </property>
      </widget>
+     <widget class="QPushButton" name="pushButton_removeSelectedServices">
+      <property name="geometry">
+       <rect>
+        <x>549</x>
+        <y>270</y>
+        <width>120</width>
+        <height>30</height>
+       </rect>
+      </property>
+      <property name="text">
+       <string>Remove selected</string>
+      </property>
+     </widget>
+     <widget class="QLabel" name="label_newServiceRuleHeader_2">
+      <property name="geometry">
+       <rect>
+        <x>550</x>
+        <y>242</y>
+        <width>150</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="layoutDirection">
+       <enum>Qt::LeftToRight</enum>
+      </property>
+      <property name="text">
+       <string>Delete a service rule</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+     </widget>
     </widget>
     <widget class="QWidget" name="tab_rules">
      <property name="enabled">
@@ -920,7 +952,7 @@
        <rect>
         <x>80</x>
         <y>10</y>
-        <width>78</width>
+        <width>90</width>
         <height>27</height>
        </rect>
       </property>
@@ -956,7 +988,7 @@
      </widget>
      <widget class="QLabel" name="label_dIP">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
@@ -972,7 +1004,7 @@
      </widget>
      <widget class="QLineEdit" name="lineEdit_dIP">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
@@ -988,7 +1020,7 @@
      </widget>
      <widget class="QLabel" name="label_sPort">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
@@ -1004,7 +1036,7 @@
      </widget>
      <widget class="QLineEdit" name="lineEdit_sPort">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
@@ -1021,8 +1053,8 @@
      <widget class="QLabel" name="label_dPort">
       <property name="geometry">
        <rect>
-        <x>230</x>
-        <y>110</y>
+        <x>220</x>
+        <y>100</y>
         <width>120</width>
         <height>27</height>
        </rect>
@@ -1062,7 +1094,7 @@
        <rect>
         <x>80</x>
         <y>40</y>
-        <width>78</width>
+        <width>90</width>
         <height>27</height>
        </rect>
       </property>
@@ -1100,7 +1132,7 @@
        <rect>
         <x>80</x>
         <y>70</y>
-        <width>78</width>
+        <width>90</width>
         <height>27</height>
        </rect>
       </property>
@@ -1120,38 +1152,22 @@
        </property>
       </item>
      </widget>
-     <widget class="QToolButton" name="toolButton_addInterface">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>160</x>
-        <y>100</y>
-        <width>23</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>...</string>
-      </property>
-     </widget>
      <widget class="QComboBox" name="comboBox_interface">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
         <x>80</x>
         <y>100</y>
-        <width>78</width>
+        <width>90</width>
         <height>27</height>
        </rect>
       </property>
      </widget>
      <widget class="QLabel" name="label_interface">
       <property name="enabled">
-       <bool>false</bool>
+       <bool>true</bool>
       </property>
       <property name="geometry">
        <rect>
@@ -1172,7 +1188,7 @@
       <property name="geometry">
        <rect>
         <x>540</x>
-        <y>10</y>
+        <y>40</y>
         <width>190</width>
         <height>27</height>
        </rect>
@@ -1214,7 +1230,7 @@
       <property name="geometry">
        <rect>
         <x>660</x>
-        <y>40</y>
+        <y>70</y>
         <width>78</width>
         <height>27</height>
        </rect>
@@ -1227,7 +1243,7 @@
       <property name="geometry">
        <rect>
         <x>540</x>
-        <y>40</y>
+        <y>70</y>
         <width>100</width>
         <height>27</height>
        </rect>
@@ -1243,7 +1259,7 @@
       <property name="geometry">
        <rect>
         <x>540</x>
-        <y>100</y>
+        <y>130</y>
         <width>110</width>
         <height>27</height>
        </rect>
@@ -1259,7 +1275,7 @@
       <property name="geometry">
        <rect>
         <x>660</x>
-        <y>100</y>
+        <y>130</y>
         <width>78</width>
         <height>27</height>
        </rect>
@@ -1272,7 +1288,7 @@
       <property name="geometry">
        <rect>
         <x>540</x>
-        <y>70</y>
+        <y>100</y>
         <width>190</width>
         <height>27</height>
        </rect>
@@ -1382,6 +1398,28 @@
       </property>
       <property name="text">
        <string>Alias</string>
+      </property>
+     </widget>
+     <widget class="QCheckBox" name="checkBox_connectionAmount_2">
+      <property name="enabled">
+       <bool>true</bool>
+      </property>
+      <property name="geometry">
+       <rect>
+        <x>540</x>
+        <y>10</y>
+        <width>190</width>
+        <height>27</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <weight>75</weight>
+        <bold>true</bold>
+       </font>
+      </property>
+      <property name="text">
+       <string>Enable rate limitations</string>
       </property>
      </widget>
     </widget>

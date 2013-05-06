@@ -34,7 +34,7 @@ public:
     /* Services */
     Service getService(int index) const;
     void addService(QString name, int port, QString protocol, QString action);
-    void editService(int index, QString name, int port, QString protocol, QString action);
+    void flushServices();
     QString getAllServices();
     int getServiceCount() const;
     void initializeServices(); // delete this

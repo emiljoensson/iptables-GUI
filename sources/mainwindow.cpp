@@ -8,6 +8,7 @@
 #include <QStringList>
 #include <QComboBox>
 #include <QSpinBox>
+#include <QPushButton>
 
 /* Intializing the system class as "firewall" */
 System firewall;
@@ -173,7 +174,7 @@ void MainWindow::fillServiceRuleTable()
 
     /* Setting the header labels */
     QStringList columnHeaders;
-    columnHeaders << "Name" << "Port" << "Protocol" << "Action" << "";
+    columnHeaders << "Name" << "Port" << "Protocol" << "Action";
     ui->tableWidget_serviceRules->setHorizontalHeaderLabels(columnHeaders);
 
     /* Filling the table */
@@ -209,10 +210,12 @@ void MainWindow::fillServiceRuleTable()
         else
             actionBox->setCurrentIndex(2);
 
+        /* Filling */
         QTableWidgetItem* name = new QTableWidgetItem(QString(firewall.getCurrentProfile()->getService(i).getName()));
         QWidget* port = portBox;
         QWidget* protocol = protocolBox;
         QWidget* action = actionBox;
+
         ui->tableWidget_serviceRules->setItem(i,0,name);
         ui->tableWidget_serviceRules->setCellWidget(i,1,port);
         ui->tableWidget_serviceRules->setCellWidget(i,2,protocol);
@@ -298,7 +301,8 @@ void MainWindow::on_pushButton_newServiceRuleAdd_clicked()
 /* pushButton: Save services */
 void MainWindow::on_pushButton_saveServices_clicked()
 {
-    for (int i=0;i<firewall.getCurrentProfile()->getServiceCount();i++) {
+    firewall.getCurrentProfile()->flushServices();
+    for (int i=0;i<ui->tableWidget_serviceRules->rowCount();i++) {
         QString name = ui->tableWidget_serviceRules->item(i,0)->text();
         /* Casting our objects from QTableWidgetItem to QComboBox/QSpinBox */
         QSpinBox* port = qobject_cast<QSpinBox*>(ui->tableWidget_serviceRules->cellWidget(i,1));
@@ -306,7 +310,7 @@ void MainWindow::on_pushButton_saveServices_clicked()
         QComboBox* action = qobject_cast<QComboBox*>(ui->tableWidget_serviceRules->cellWidget(i,3));
 
         /* Passing our typecasted objects as parameters to editService function */
-        firewall.getCurrentProfile()->editService(i, name, port->value(), protocol->currentText(), action->currentText());
+        firewall.getCurrentProfile()->addService(name, port->value(), protocol->currentText(), action->currentText());
     }
     firewall.saveServices();
     ui->label_editStatus->setText("Changes has been saved.");
@@ -446,4 +450,11 @@ void MainWindow::on_pushButton_changeProfile_clicked()
 
     this->refreshProfileTab();
     this->refreshServiceTab();
+}
+
+void MainWindow::on_pushButton_removeSelectedServices_clicked()
+{
+    //firewall.getCurrentProfile()->deleteService(ui->tableWidget_serviceRules->currentRow());
+    ui->tableWidget_serviceRules->removeRow(ui->tableWidget_serviceRules->currentRow());
+    //firewall.saveServices();
 }

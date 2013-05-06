@@ -70,9 +70,9 @@ void Profile::addService(QString name, int port, QString protocol, QString actio
     this->services.push_back(new Service(name, port, protocol, action));
 }
 
-void Profile::editService(int index, QString name, int port, QString protocol, QString action)
+void Profile::flushServices()
 {
-    this->services.at(index) = (new Service(name, port, protocol, action));
+    this->services.clear();
 }
 
 QString Profile::getAllServices()

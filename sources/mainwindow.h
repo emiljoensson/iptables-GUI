@@ -39,6 +39,8 @@ private slots:
     void on_pushButton_addInterface_edit_delete_clicked();
     void on_pushButton_saveProfile_undo_clicked();
     void on_pushButton_changeProfile_clicked();
+    void on_pushButton_removeSelectedServices_clicked();
+
 private:
     Ui::MainWindow *ui;
 };
