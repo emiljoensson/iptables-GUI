@@ -2,7 +2,9 @@
 
 System::System()
 {
+    this->systemPath = "/home/helga/Desktop/firewall"; //System path without trailing slash
     this->status = false;
+    this->currentProfile = NULL;
 
     //Opening the profileList file to check for profiles
     QFile profileList("/home/helga/Desktop/firewall/profileList.txt");  //TEMP: CHANGE PATH
@@ -62,7 +64,7 @@ void System::changeCurrentProfile(QString name)
     out << this->profileNames.size() << "\n";
     out << this->currentProfile->getName() << "\n";
 
-    for (int i=0;i<this->profileNames.size();i++)
+    for (unsigned int i=0;i<this->profileNames.size();i++)
         out << this->profileNames.at(i) << "\n";
 
     profileList.close();
@@ -76,6 +78,8 @@ void System::updateProfileInfo(QString name)
     QFile profileList(pathString);
     profileList.open(QIODevice::ReadOnly | QIODevice::Text);
     QTextStream in(&profileList);
+    //if (this->currentProfile == NULL)
+        delete this->currentProfile;
     this->currentProfile = new Profile(in.readLine(), in.readLine(), in.readLine(), in.readLine(), in.readLine());
     profileList.close();
 }
@@ -103,8 +107,8 @@ void System::updateProfileServices(QString name)
     currentProfileServices.open(QIODevice::ReadOnly | QIODevice::Text);
     QTextStream in3(&currentProfileServices);
 
-    QString serviceName, serviceProtocol, serviceAction;
-    int servicePort, varCount=0;
+    QString serviceName, serviceProtocol, serviceAction, servicePort;
+    int varCount=0;
     while (in3.atEnd() == false) {
         QString line = in3.readLine(); // contains several lines of text
         QStringList service = line.split(",", QString::SkipEmptyParts);
@@ -112,14 +116,14 @@ void System::updateProfileServices(QString name)
             if ((varCount % 4) == 0)
                 serviceName = var;
             else if ((varCount % 4) == 1)
-                servicePort = var.toInt();
+                servicePort = var;
             else if ((varCount % 4) == 2)
                 serviceProtocol = var;
             else if ((varCount % 4) == 3)
                 serviceAction = var;
             varCount++;
         }
-        this->currentProfile->addService(serviceName, servicePort, serviceProtocol, serviceAction);
+        this->currentProfile->addService(serviceName, servicePort.toInt(), serviceProtocol, serviceAction);
     }
     currentProfileServices.close();
 }
@@ -151,15 +155,14 @@ void System::saveCurrentProfile(std::vector<QString> interfaces, QString default
     currentProfile.close();
 
     //Writing the changes of interfaces to the profile's interface file
-    int nrOfInterfaces = interfaces.size();
     QString pathString2;
     QTextStream pathStream2(&pathString2);
     pathStream2 << this->systemPath << "/profiles/" << this->currentProfile->getName() << "-interfaces.txt";
     QFile currentProfileInterfaces(pathString2);
     currentProfileInterfaces.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream out2(&currentProfileInterfaces);
-    out2 << nrOfInterfaces << "\n";
-    for (int i=0;i<nrOfInterfaces;i++)
+    out2 << interfaces.size() << "\n";
+    for (unsigned int i=0;i<interfaces.size();i++)
         out2 << interfaces.at(i) << "\n";
     currentProfileInterfaces.close();
 
@@ -175,7 +178,8 @@ void System::saveServices()
     QFile serviceRulesFile(pathString);
     serviceRulesFile.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream out(&serviceRulesFile);
-    out << this->getCurrentProfile()->getAllServices();
+    for (int i=0;i<this->getCurrentProfile()->getServiceCount();i++)
+        out << this->getCurrentProfile()->serviceToString(i);
     serviceRulesFile.close();
 }
 
@@ -206,25 +210,6 @@ QString System::getSystemPath() const
     return this->systemPath;
 }
 
-QVector<Service*> System::getDefaultServices()
-{
-    QVector<Service*> returnVal;
-    returnVal.push_back(new Service("FTP", 21, "tcp", "drop"));
-    returnVal.push_back(new Service("SSH", 22, "tcp", "accept"));
-    returnVal.push_back(new Service("Telnet", 23, "tcp", "drop"));
-    returnVal.push_back(new Service("SMTP", 25, "tcp", "drop"));
-    returnVal.push_back(new Service("DNS", 53, "tcp/udp", "drop"));
-    returnVal.push_back(new Service("HTTP", 80, "tcp", "accept"));
-    returnVal.push_back(new Service("HTTPS", 443, "tcp", "drop"));
-    returnVal.push_back(new Service("NTP", 123, "udp", "drop"));
-    returnVal.push_back(new Service("IMAP", 143, "tcp", "drop"));
-    returnVal.push_back(new Service("SNMP", 161, "udp", "drop"));
-    returnVal.push_back(new Service("SMB", 445, "tcp", "drop"));
-    returnVal.push_back(new Service("PPTP", 1723, "tcp", "drop"));
-    returnVal.push_back(new Service("MySQL", 3306, "tcp", "drop"));
-    return returnVal;
-}
-
 void System::createProfile(QString name, std::vector<QString> interfaces, QString defaultPolicyIN, QString defaultPolicyOUT)
 {
     //Writing the profile info to the profile file
@@ -245,7 +230,6 @@ void System::createProfile(QString name, std::vector<QString> interfaces, QStrin
     this->profileNames.push_back(name);
 
     //Writing the interfaces to the profile's interface file
-    int nrOfInterfaces = interfaces.size();
     QString pathString2;
     QTextStream pathStream2(&pathString2);
     pathStream2 << this->systemPath << "/profiles/" << name << "-interfaces.txt";
@@ -253,8 +237,8 @@ void System::createProfile(QString name, std::vector<QString> interfaces, QStrin
     newProfileInterfaces.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream out2(&newProfileInterfaces);
 
-    out2 << nrOfInterfaces << "\n";
-    for (int i=0;i<nrOfInterfaces;i++)
+    out2 << interfaces.size() << "\n";
+    for (unsigned int i=0;i<interfaces.size();i++)
         out2 << interfaces.at(i) << "\n";
 
     newProfileInterfaces.close();
@@ -267,8 +251,20 @@ void System::createProfile(QString name, std::vector<QString> interfaces, QStrin
     newProfileServices.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream out3(&newProfileServices);
 
-    for (int i=0;i<this->getDefaultServices().size();i++)
-        out3 << this->getDefaultServices().at(i)->getService() << "\n";
+    out3 << "FTP,21,tcp,drop\n";
+    out3 << "FTP,21,tcp,drop\n";
+    out3 << "SSH,22,tcp,accept\n";
+    out3 << "Telnet,23,tcp,drop\n";
+    out3 << "SMTP,25,tcp,drop\n";
+    out3 << "DNS,53,tcp/udp,drop\n";
+    out3 << "HTTP,80,tcp,accept\n";
+    out3 << "HTTPS,443,tcp,drop\n";
+    out3 << "NTP,123,udp,drop\n";
+    out3 << "IMAP,143,tcp,drop\n";
+    out3 << "SNMP,161,udp,drop\n";
+    out3 << "SMB,445,tcp,drop\n";
+    out3 << "PPTP,1723,tcp,drop\n";
+    out3 << "MySQL,3306,tcp,drop\n";
 
     newProfileServices.close();
 
@@ -280,14 +276,16 @@ void System::createProfile(QString name, std::vector<QString> interfaces, QStrin
     profileList.open(QIODevice::WriteOnly | QIODevice::Text);
     QTextStream out4(&profileList);
 
-    out4 << this->profileNames.size() << "\n";
+    int nrOfProfiles = this->profileNames.size();
+
+    out4 << nrOfProfiles << "\n";
 
     if (this->firstTimeUse == TRUE)
         out4 << name << "\n";
     else
         out4 << this->currentProfile->getName() << "\n";
 
-    for (int i=0;i<this->profileNames.size();i++)
+    for (int i=0;i<nrOfProfiles;i++)
         out4 << this->profileNames.at(i) << "\n";
 
     profileList.close();

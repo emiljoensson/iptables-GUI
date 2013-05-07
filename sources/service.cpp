@@ -1,13 +1,5 @@
 #include "service.h"
 
-Service::Service()
-{
-    this->name = "NULL";
-    this->port = 0;
-    this->protocol = "NULL";
-    this->action = "NULL";
-}
-
 Service::Service(QString name, int port, QString protocol, QString action)
 {
     this->name = name;
@@ -37,21 +29,4 @@ int Service::getPort() const {
 
 QString Service::getAction() const {
     return this->action;
-}
-
-
-void Service::setName(QString name) {
-    this->name = name;
-}
-
-void Service::setProtocol(QString protocol) {
-    this->protocol = protocol;
-}
-
-void Service::setPort(int port) {
-    this->port = port;
-}
-
-void Service::setAction(QString action) {
-    this->action = action;
 }

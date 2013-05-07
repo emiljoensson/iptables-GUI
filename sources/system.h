@@ -9,7 +9,7 @@
 class System
 {
 private:
-    QString systemPath = "/home/helga/Desktop/firewall"; //System path without trailing slash
+    QString systemPath;
     bool status;
     std::vector<QString> profileNames;
     Profile *currentProfile;
@@ -30,7 +30,6 @@ public:
     bool getStatus() const;
     bool getFirstTimeUse() const;
     QString getSystemPath() const;
-    QVector<Service*> getDefaultServices();
     void createProfile(QString name, std::vector<QString> interfaces, QString defaultPolicyIN, QString defaultPolicyOUT);
 };
 

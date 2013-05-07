@@ -186,16 +186,16 @@ void MainWindow::fillServiceRuleTable()
         QSpinBox *portBox = new QSpinBox;
         portBox->setMinimum(1);
         portBox->setMaximum(65535);
-        portBox->setValue(firewall.getCurrentProfile()->getService(i).getPort());
+        portBox->setValue(firewall.getCurrentProfile()->getService(i)->getPort());
 
         /* Defining the protocol ComboBox */
         QComboBox *protocolBox = new QComboBox;
         QStringList protocols;
         protocols << "tcp" << "udp" << "tcp/udp";
         protocolBox->addItems(protocols);
-        if (firewall.getCurrentProfile()->getService(i).getProtocol() == "tcp")
+        if (firewall.getCurrentProfile()->getService(i)->getProtocol() == "tcp")
             protocolBox->setCurrentIndex(0);
-        else if (firewall.getCurrentProfile()->getService(i).getProtocol() == "udp")
+        else if (firewall.getCurrentProfile()->getService(i)->getProtocol() == "udp")
             protocolBox->setCurrentIndex(1);
         else
             protocolBox->setCurrentIndex(2);
@@ -205,15 +205,15 @@ void MainWindow::fillServiceRuleTable()
         QStringList actions;
         actions << "drop" << "accept" << "reject";
         actionBox->addItems(actions);
-        if (firewall.getCurrentProfile()->getService(i).getAction() == "drop")
+        if (firewall.getCurrentProfile()->getService(i)->getAction() == "drop")
             actionBox->setCurrentIndex(0);
-        else if (firewall.getCurrentProfile()->getService(i).getAction() == "accept")
+        else if (firewall.getCurrentProfile()->getService(i)->getAction() == "accept")
             actionBox->setCurrentIndex(1);
         else
             actionBox->setCurrentIndex(2);
 
         /* Filling */
-        QTableWidgetItem* name = new QTableWidgetItem(QString(firewall.getCurrentProfile()->getService(i).getName()));
+        QTableWidgetItem* name = new QTableWidgetItem(QString(firewall.getCurrentProfile()->getService(i)->getName()));
         QWidget* port = portBox;
         QWidget* protocol = protocolBox;
         QWidget* action = actionBox;
@@ -294,9 +294,38 @@ void MainWindow::on_pushButton_newServiceRuleAdd_clicked()
         ui->label_newServiceRuleFooter->setText("ERROR: Please choose a protocol.");
     else if (ui->comboBox_newServiceRuleAction->currentIndex() == 0)
         ui->label_newServiceRuleFooter->setText("ERROR: Please choose an action.");
-    else {
-        firewall.getCurrentProfile()->addService(ui->lineEdit_newServiceRuleName->text(), ui->spinBox_newServiceRulePort->value(), ui->comboBox_newServiceRuleProtocol->currentText(), ui->comboBox_newServiceRuleAction->currentText());
-        this->fillServiceRuleTable();
+    else { // Adding it to the tableWidget
+        /* Defining the port SpinBox */
+        QSpinBox *portBox = new QSpinBox;
+        portBox->setMinimum(1);
+        portBox->setMaximum(65535);
+        portBox->setValue(ui->spinBox_newServiceRulePort->value());
+
+        /* Defining the protocol ComboBox */
+        QComboBox *protocolBox = new QComboBox;
+        QStringList protocols;
+        protocols << "tcp" << "udp" << "tcp/udp";
+        protocolBox->addItems(protocols);
+        protocolBox->setCurrentIndex(ui->comboBox_newServiceRuleProtocol->currentIndex()-1);
+
+        /* Defining the action ComboBox */
+        QComboBox *actionBox = new QComboBox;
+        QStringList actions;
+        actions << "drop" << "accept" << "reject";
+        actionBox->addItems(actions);
+        actionBox->setCurrentIndex(ui->comboBox_newServiceRuleAction->currentIndex()-1);
+
+        /* Filling */
+        QTableWidgetItem* name = new QTableWidgetItem(QString(ui->lineEdit_newServiceRuleName->text()));
+        QWidget* port = portBox;
+        QWidget* protocol = protocolBox;
+        QWidget* action = actionBox;
+        int rowNr = ui->tableWidget_serviceRules->rowCount();
+        ui->tableWidget_serviceRules->insertRow(rowNr);
+        ui->tableWidget_serviceRules->setItem(rowNr,0,name);
+        ui->tableWidget_serviceRules->setCellWidget(rowNr,1,port);
+        ui->tableWidget_serviceRules->setCellWidget(rowNr,2,protocol);
+        ui->tableWidget_serviceRules->setCellWidget(rowNr,3,action);
     }
 }
 
@@ -413,6 +442,7 @@ void MainWindow::on_pushButton_addInterface_edit_clicked()
 /* comboBox: defaultPolicyIN_edit - indexChanged */
 void MainWindow::on_comboBox_defaultPolicyIN_edit_currentIndexChanged(const QString &arg1)
 {
+    (void)arg1;
     ui->pushButton_saveProfile->setEnabled(TRUE);
     ui->pushButton_saveProfile_undo->setEnabled(TRUE);
     ui->label_changesDetected->setText("Changes detected!");
@@ -421,6 +451,7 @@ void MainWindow::on_comboBox_defaultPolicyIN_edit_currentIndexChanged(const QStr
 /* comboBox: defaultPolicyOUT_edit - indexChanged */
 void MainWindow::on_comboBox_defaultPolicyOUT_edit_currentIndexChanged(const QString &arg1)
 {
+    (void)arg1;
     ui->pushButton_saveProfile->setEnabled(TRUE);
     ui->pushButton_saveProfile_undo->setEnabled(TRUE);
     ui->label_changesDetected->setText("Changes detected!");

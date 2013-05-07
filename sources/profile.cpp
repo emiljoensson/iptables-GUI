@@ -9,6 +9,12 @@ Profile::Profile(QString name, QString defaultPolicyIN, QString defaultPolicyOUT
     this->editedDate = editedDate;
 }
 
+Profile::~Profile()
+{
+    this->flushServices();
+    this->flushRules();
+}
+
 QString Profile::getSystemTime() const
 {
     QDateTime tmp;
@@ -40,11 +46,6 @@ QString Profile::getDefaultPolicyOUT() const
     return this->defaultPolicyOUT;
 }
 
-Rule Profile::getRule(int index) const
-{
-    return *this->firewallRules.at(index);
-}
-
 QString Profile::getInterface(int index) const
 {
     return this->interfaces.at(index);
@@ -60,9 +61,9 @@ int Profile::getInterfaceCount() const
     return this->interfaces.size();
 }
 
-Service Profile::getService(int index) const
+Service* Profile::getService(int index) const
 {
-    return *this->services.at(index);
+    return this->services.at(index);
 }
 
 void Profile::addService(QString name, int port, QString protocol, QString action)
@@ -72,20 +73,22 @@ void Profile::addService(QString name, int port, QString protocol, QString actio
 
 void Profile::flushServices()
 {
+    int nrOfServices = this->services.size();
+    for (int i=0;i<nrOfServices;i++)
+        delete this->services.at(i);
     this->services.clear();
 }
 
-QString Profile::getAllServices()
+QString Profile::serviceToString(int index) const
 {
-    QString allServices;
-    Service* tmp;
-    QTextStream out(&allServices);
-    int size = services.size();
-    for (int i=0;i<size;i++) {
-        tmp = this->services.at(i);
-        out << tmp->getName() << "," << tmp->getPort() << "," << tmp->getProtocol() << "," << tmp->getAction() << "\n";
-    }
-    return allServices;
+    QString returnVal;
+    QTextStream out(&returnVal);
+    out << static_cast<Service*>(this->services.at(index))->getName() << ",";
+    out << static_cast<Service*>(this->services.at(index))->getPort() << ",";
+    out << static_cast<Service*>(this->services.at(index))->getProtocol() << ",";
+    out << static_cast<Service*>(this->services.at(index))->getAction() << "\n";
+    return returnVal;
+
 }
 
 int Profile::getServiceCount() const
@@ -93,19 +96,10 @@ int Profile::getServiceCount() const
     return this->services.size();
 }
 
-void Profile::initializeServices()
+void Profile::flushRules()
 {
-    this->services.push_back(new Service("FTP", 21, "tcp", "drop"));
-    this->services.push_back(new Service("SSH", 22, "tcp", "accept"));
-    this->services.push_back(new Service("Telnet", 23, "tcp", "drop"));
-    this->services.push_back(new Service("SMTP", 25, "tcp", "drop"));
-    this->services.push_back(new Service("DNS", 53, "tcp/udp", "drop"));
-    this->services.push_back(new Service("HTTP", 80, "tcp", "accept"));
-    this->services.push_back(new Service("HTTPS", 443, "tcp", "drop"));
-    this->services.push_back(new Service("NTP", 123, "udp", "drop"));
-    this->services.push_back(new Service("IMAP", 143, "tcp", "drop"));
-    this->services.push_back(new Service("SNMP", 161, "udp", "drop"));
-    this->services.push_back(new Service("SMB", 445, "tcp", "drop"));
-    this->services.push_back(new Service("PPTP", 1723, "tcp", "drop"));
-    this->services.push_back(new Service("MySQL", 3306, "tcp", "drop"));
+    int nrOfRules = this->rules.size();
+    for (int i=0;i<nrOfRules;i++)
+        delete this->rules.at(i);
+    this->rules.clear();
 }

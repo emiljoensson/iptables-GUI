@@ -14,11 +14,12 @@ private:
     QString name;
     std::vector<QString> interfaces;
     std::vector<Service*> services;
-    std::vector<Rule*> firewallRules;
+    std::vector<Rule*> rules;
     QString createdDate, editedDate;
     QString defaultPolicyIN, defaultPolicyOUT;
 public:
     Profile(QString name="New Profile", QString defaultPolicyIN="accept", QString defaultPolicyOUT="accept", QString createdDate="NULL", QString editedDate="NULL");
+    ~Profile();
     QString getSystemTime() const;
     QString getName() const;
     QString getCreationDate() const;
@@ -32,16 +33,14 @@ public:
     int getInterfaceCount() const;
 
     /* Services */
-    Service getService(int index) const;
+    Service* getService(int index) const;
     void addService(QString name, int port, QString protocol, QString action);
     void flushServices();
-    QString getAllServices();
+    QString serviceToString(int index) const;
     int getServiceCount() const;
-    void initializeServices(); // delete this
-
 
     /* Rules */
-    Rule getRule(int index) const;
+    void flushRules();
 };
 
 #endif // PROFILE_H

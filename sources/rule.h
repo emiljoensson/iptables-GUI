@@ -9,8 +9,7 @@ private:
     QString sIP, dIP, protocol, interface;
     int sPort, dPort;
 public:
-    Rule();
-    Rule(QString sIP, QString dIP, int sPort, int dPort, QString protocol, QString interface);
+    Rule(QString sIP="null", QString dIP="null", int sPort=0, int dPort=0, QString protocol="null", QString interface="null");
 };
 
 #endif // RULE_H
