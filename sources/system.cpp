@@ -18,9 +18,9 @@ System::System()
     //Checking if we have any profiles or not
 
     if (nrOfProfiles == 0) { //If there are no profiles
-        this->firstTimeUse = TRUE;
+        this->firstTimeUse = true;
     } else if (nrOfProfiles > 0) { //If we have at least 1 profile
-        this->firstTimeUse = FALSE;
+        this->firstTimeUse = false;
 
         currentProfileName = in.readLine(); //Reading currentProfile from line 2
 
@@ -280,7 +280,7 @@ void System::createProfile(QString name, std::vector<QString> interfaces, QStrin
 
     out4 << nrOfProfiles << "\n";
 
-    if (this->firstTimeUse == TRUE)
+    if (this->firstTimeUse == true)
         out4 << name << "\n";
     else
         out4 << this->currentProfile->getName() << "\n";
@@ -290,8 +290,8 @@ void System::createProfile(QString name, std::vector<QString> interfaces, QStrin
 
     profileList.close();
 
-    if (this->firstTimeUse == TRUE) {
+    if (this->firstTimeUse == true) {
         this->changeCurrentProfile(name);
-        this->firstTimeUse = FALSE;
+        this->firstTimeUse = false;
     }
 }

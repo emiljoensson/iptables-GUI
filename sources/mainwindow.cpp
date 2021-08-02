@@ -30,7 +30,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     /* Loading profiles if there are any, otherwise load firstTimeUse mode */
-    if (firewall.getFirstTimeUse() == FALSE) {
+    if (firewall.getFirstTimeUse() == false) {
         this->refreshAllTabs();
     } else {
         this->firstTimeUse();
@@ -108,8 +108,8 @@ void MainWindow::refreshProfileTab()
     for (int i=0;i<firewall.getCurrentProfile()->getInterfaceCount();i++)
         ui->comboBox_interface->addItem(firewall.getCurrentProfile()->getInterface(i));
 
-    ui->pushButton_saveProfile->setEnabled(FALSE);
-    ui->pushButton_saveProfile_undo->setEnabled(FALSE);
+    ui->pushButton_saveProfile->setEnabled(false);
+    ui->pushButton_saveProfile_undo->setEnabled(false);
     ui->label_changesDetected->setText("");
 }
 
@@ -363,9 +363,9 @@ void MainWindow::on_pushButton_createProfile_clicked()
         for (int i=0;i<nrOfInterfaces;i++)
             interfaces.push_back(ui->listWidget_interfaces->item(i)->text());
 
-        bool firstProfile = FALSE;
-        if (firewall.getFirstTimeUse() == TRUE)
-            firstProfile = TRUE;
+        bool firstProfile = false;
+        if (firewall.getFirstTimeUse() == true)
+            firstProfile = true;
 
         firewall.createProfile(
             ui->lineEdit_newProfileName->text(),
@@ -379,9 +379,9 @@ void MainWindow::on_pushButton_createProfile_clicked()
         ui->comboBox_defaultPolicyOUT->setCurrentIndex(0);
         ui->listWidget_interfaces->clear();
 
-        if (firstProfile == TRUE) {
+        if (firstProfile == true) {
             this->refreshAllTabs();
-            this->firstTimeUse(FALSE);
+            this->firstTimeUse(false);
         } else {
             //Re-filling the change profile comboBox
             ui->comboBox_changeProfileList->clear();
@@ -409,8 +409,8 @@ void MainWindow::on_pushButton_saveProfile_clicked()
         ui->comboBox_defaultPolicyOUT_edit->currentText()
     );
 
-    ui->pushButton_saveProfile->setEnabled(FALSE);
-    ui->pushButton_saveProfile_undo->setEnabled(FALSE);
+    ui->pushButton_saveProfile->setEnabled(false);
+    ui->pushButton_saveProfile_undo->setEnabled(false);
     ui->label_changesDetected->setText("");
     ui->listWidget_interfaces_edit->clear();
     this->refreshProfileTab();
@@ -434,8 +434,8 @@ void MainWindow::on_pushButton_addInterface_edit_clicked()
         ui->listWidget_interfaces_edit->addItem(interface);
         ui->lineEdit_newInterfaceName_edit->setText("");
     }
-    ui->pushButton_saveProfile->setEnabled(TRUE);
-    ui->pushButton_saveProfile_undo->setEnabled(TRUE);
+    ui->pushButton_saveProfile->setEnabled(true);
+    ui->pushButton_saveProfile_undo->setEnabled(true);
     ui->label_changesDetected->setText("Changes detected!");
 }
 
@@ -443,8 +443,8 @@ void MainWindow::on_pushButton_addInterface_edit_clicked()
 void MainWindow::on_comboBox_defaultPolicyIN_edit_currentIndexChanged(const QString &arg1)
 {
     (void)arg1;
-    ui->pushButton_saveProfile->setEnabled(TRUE);
-    ui->pushButton_saveProfile_undo->setEnabled(TRUE);
+    ui->pushButton_saveProfile->setEnabled(true);
+    ui->pushButton_saveProfile_undo->setEnabled(true);
     ui->label_changesDetected->setText("Changes detected!");
 }
 
@@ -452,8 +452,8 @@ void MainWindow::on_comboBox_defaultPolicyIN_edit_currentIndexChanged(const QStr
 void MainWindow::on_comboBox_defaultPolicyOUT_edit_currentIndexChanged(const QString &arg1)
 {
     (void)arg1;
-    ui->pushButton_saveProfile->setEnabled(TRUE);
-    ui->pushButton_saveProfile_undo->setEnabled(TRUE);
+    ui->pushButton_saveProfile->setEnabled(true);
+    ui->pushButton_saveProfile_undo->setEnabled(true);
     ui->label_changesDetected->setText("Changes detected!");
 }
 
@@ -461,16 +461,16 @@ void MainWindow::on_comboBox_defaultPolicyOUT_edit_currentIndexChanged(const QSt
 void MainWindow::on_pushButton_addInterface_edit_delete_clicked()
 {
     delete ui->listWidget_interfaces_edit->currentItem();
-    ui->pushButton_saveProfile->setEnabled(TRUE);
-    ui->pushButton_saveProfile_undo->setEnabled(TRUE);
+    ui->pushButton_saveProfile->setEnabled(true);
+    ui->pushButton_saveProfile_undo->setEnabled(true);
     ui->label_changesDetected->setText("Changes detected!");
 }
 
 /* pushButton: Undo changes to current profile */
 void MainWindow::on_pushButton_saveProfile_undo_clicked()
 {
-    ui->pushButton_saveProfile->setEnabled(FALSE);
-    ui->pushButton_saveProfile_undo->setEnabled(FALSE);
+    ui->pushButton_saveProfile->setEnabled(false);
+    ui->pushButton_saveProfile_undo->setEnabled(false);
     ui->label_changesDetected->setText("");
     ui->listWidget_interfaces_edit->clear();
     this->refreshProfileTab();
