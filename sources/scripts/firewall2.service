@@ -1,0 +1,15 @@
+[Unit]
+Description=Apply firewall rules
+After=network.target
+
+[Service]
+Type=oneshot
+EnvironmentFile=/etc/default/firewall
+ExecStart=/usr/init.d/firewall
+RemainAfterExit=true
+ExecStop=/usr/init.d/firewall
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
+
