@@ -28,6 +28,8 @@ private slots:
     void firstTimeUse(bool trueOrFalse="true");
     void fillServiceRuleTable();
     void fillDefineRulesTable();
+    void on_exit();
+    void showMessage();
 
     void on_pushButton_startStop_clicked();
     void on_pushButton_reloadCustomRules_clicked();

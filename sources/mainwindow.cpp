@@ -29,6 +29,11 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+        QFile stylesheet("./Resource/themes/qdarkstyle/qdarkstyle.qss");
+        stylesheet.open(QFile::ReadOnly);
+        this->setStyleSheet(stylesheet.readAll());
+        stylesheet.close();
+
     QPixmap oPixmap(32,32);
     oPixmap.load ( mediadir + "smoking.png");
 
@@ -73,6 +78,17 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::showMessage()
+{
+    QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon();
+    trayIcon->showMessage(tr("QSatisfy"), tr("Will you smoke now..."), icon, 100);
+}
+void MainWindow::on_exit()
+{
+    this->close();
+    QApplication::quit();
 }
 
 void MainWindow::refreshAllTabs()

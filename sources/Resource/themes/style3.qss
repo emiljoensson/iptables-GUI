@@ -1,0 +1,463 @@
+QWidget{
+    background: #e0e0e0;
+}
+QTableWidget {
+    border: 1px solid #5F9257;
+    background-color:white;
+    font-size: 11pt;
+}
+QTableWidget::item:selected {
+    background: #e1f0fd;
+    color: #000000;
+}
+QTableWidget>QHeaderView::section {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1,   stop:0.6 #5F9257, stop:1 #FFFFFF);
+    color: white;
+    height: 25;
+    border-left: none;
+    border-top:none;
+    border-bottom: none;
+    border-right-width: 1px;
+    border-right-color: white;
+    border-right-style: solid;
+    font-family: "KP CheonRiMa";
+    font-size: 11pt;
+    text-align: center;
+    padding: 0px 0px 0px 3px;
+}
+QTabWidget {
+    background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1,   stop:0.6 #5F9257, stop:1 #FFFFFF);;
+    border: 2px solid #5F9257;
+    font-family: "KP CheonRiMa";
+    font-size: 11pt;
+    text-align: center;
+}
+QTabWidget::pane { /* The tab widget frame */
+     border-top: 2px solid #5F9257;
+ }
+QTabBar::tab {
+	font: 11pt;
+	border-top:2px solid #5F9257; 
+	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1,   stop:0.6 #5F9257, stop:1 #FFFFFF);
+            min-width: 80px;
+	min-height: 16px;
+            padding: 5px;
+}
+QTabBar::tab:!selected {
+	color:rgb(255,255,255);
+	background: #5F9257;
+            margin-bottom: 0px; 
+}
+QTabBar::tab:selected {
+	color:green;
+}
+QTabBar::tab:disabled {
+    color: none;
+}
+QMessageBox{
+   background-color:white;
+}
+QToolTip{
+    font: 20pt;
+}
+QToolBox
+{
+	background-color:white;
+}
+QToolBox::tab {
+    background: #5F9257;
+    color: white;
+}
+QToolBox::tab:selected { /* italicize selected tabs */
+	background:green;
+    font-weight: bold;
+    color: white;
+}
+QGroupBox {
+     border: 1px solid #5F9257;
+	 padding:15px;
+     font-weight: bold;
+     color: #5F9257;
+}
+QWidget#TShowDlgClass{
+   background: url("Resource/pback.png");
+}
+QWidget#TJudgmentClass{
+   background: url("Resource/back.png");
+   font-family: "KP CheonRiMa";
+}
+QWidget#ITAS_JSClass{
+    background: white;     
+    font-family: "KP CheonRiMa";
+}
+QWidget#TSettingClass{
+    background: white;
+    font-family: "KP CheonRiMa";
+}
+QWidget#TResultClass{
+    background: white;
+    font-family: "KP CheonRiMa";
+}
+QWidget#TProposalDlgClass{
+    background: white;
+    font-family: "KP CheonRiMa";
+}
+QWidget#TJudgeResultClass {
+    background: white;
+    font-family: "KP CheonRiMa";
+}
+QWidget#TShowDlgClass {
+    background: white;
+    font-family: "KP CheonRiMa";
+}
+QWidget#TConsiderDlgClass {
+    background: white;
+    font-family: "KP CheonRiMa";
+}
+QWidget#ConsiderControlClass {
+    background: white;
+    font-family: "KP CheonRiMa";
+}
+QWidget#PShowClass {
+    background: white;
+    font-family: "KP CheonRiMa";
+}
+QWidget#TOrderClass {
+    background: white;
+    font-family: "KP CheonRiMa";
+}
+QTextEdit {
+     border: 1px solid #5F9257;
+     background: white;
+     selection-background-color: black;
+     font-family: "KP CheonRiMa";
+     font-size: 11pt;
+}
+QTextEdit:hover{
+     border: 1px solid green;
+}
+QLineEdit {
+     border: 1px solid #5F9257;
+     background: white;
+     selection-background-color: black;
+     font-family: "KP CheonRiMa";
+     font-size: 11pt;
+}
+QLineEdit:hover{
+     border: 1px solid green;
+}
+QSpinBox {
+     border: 1px solid #5F9257;
+     background: white;
+     selection-background-color: black;
+     font-family: "KP CheonRiMa";
+     font-size: 11pt;
+}
+QSpinBox:hover{
+     border: 1px solid green;
+}
+QScrollArea {
+     border: 1px solid #5F9257;
+     background: white;
+}
+QComboBox {
+     border: 1px solid #5F9257;
+     background: white;
+     padding: 1px 18px 1px 3px;
+     min-width: 6em;
+     font-family: "KP CheonRiMa";
+     font-size: 11pt;
+}
+QComboBox:on { /* shift the text when the popup opens */
+     padding-top: 6px;
+     padding-left: 8px;
+}
+QComboBox::drop-down {
+     border: none;
+     subcontrol-origin: padding;
+     subcontrol-position: top right;
+     width: 30px;
+     background: white;
+}
+QComboBox::down-arrow {
+     image: url(Resource/cbm_downArrow.png);
+}
+QComboBox::down-arrow:on { /* shift the arrow when popup is open */
+     top: 1px;
+     left: 1px;
+}
+QComboBox QAbstractItemView {
+      border: 1px solid #5F9257;
+      background: white;
+     selection-background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1,   stop:0.6 #5F9257, stop:1 #FFFFFF);
+}
+QPushButton {
+    border: none;
+    width: 85px;
+    font-family: "KP CheonRiMa";
+    font-weight: bold;
+    font-size: 10pt;
+    color: #FFFFFF;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1,   stop:0.6 #5F9257, stop:1 #FFFFFF);
+    padding-top: 5px;
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: 5px;
+}
+QPushButton:hover {
+    background-color: green;
+     color: #FFFFF;
+    padding-top: 3px;
+}
+QPushButton:pressed {
+    background-color: green;
+    color: #FFFFFF;
+    padding-top: 7px;
+}
+QPushButton:disabled {
+    border: 1px solid #bababa;
+    padding-top: 5px;
+    background-color: white;
+    color: #bababa;
+}
+QAbstractScrollArea QScrollBar:vertical{
+    border-top:none;
+    border-right:none;
+    border-bottom:none;
+    border-left-width: 1px;
+    border-left-color: green;
+    border-left-style: solid;
+    background: white;
+    width: 16px;
+    margin: 14px 0 14px 0;
+}
+QAbstractScrollArea QScrollBar::handle:vertical {
+    background: green;
+    min-height: 15px;
+    border: 1px solid #FFFFFF;
+}
+QAbstractScrollArea QScrollBar::handle:vertical:hover {
+    background: #e7eefb;
+    min-height: 20px;
+}
+QAbstractScrollArea QScrollBar::handle:vertical:pressed {
+    background: green;
+    min-height: 20px;
+    border: 1px solid #FFFFFF;
+}
+QAbstractScrollArea QScrollBar::add-line:vertical {
+    height: 15px;
+    width: 15px;
+    subcontrol-position: bottom;
+    subcontrol-origin: margin;
+    border: 1px solid green;
+    border-right:none;
+    border-top:none;
+}
+QAbstractScrollArea QScrollBar::sub-line:vertical {
+    height: 15px;
+    width: 15px;
+    subcontrol-position: top;
+    subcontrol-origin: margin;
+    border: 1px solid green;
+    border-bottom:none;
+    border-right:none;
+    border-top:none;
+}
+QAbstractScrollArea QScrollBar::up-arrow:vertical{
+    width: 14px;
+    height: 14px;
+    background: url(Resource/upArrow.png)
+}
+QAbstractScrollArea QScrollBar::up-arrow:vertical:hover{
+    background: url(Resource/upArrow_hover.png)
+}
+QAbstractScrollArea QScrollBar::up-arrow:vertical:pressed{
+    background: url(Resource/upArrow_pressed.png)
+}
+QAbstractScrollArea QScrollBar::down-arrow:vertical {
+    width: 14px;
+    height: 14px;
+    background: url(Resource/downArrow.png)
+}
+QAbstractScrollArea QScrollBar::down-arrow:vertical:hover{
+    background: url(Resource/downArrow_hover.png)
+}
+QAbstractScrollArea QScrollBar::down-arrow:vertical:pressed{
+    background: url(Resource/downArrow_pressed.png)
+}
+QAbstractScrollArea QScrollBar::add-page:vertical, QAbstractScrollArea QScrollBar::sub-page:vertical {
+    background: white;
+}
+QAbstractScrollArea QScrollBar:horizontal {
+    border-bottom:none;
+    border-left:none;
+    border-right:none;
+    border-top-width: 1px;
+    border-top-color: green;
+    border-top-style: solid;
+    background: #white;
+    height: 16px;
+    margin: 0px 14px 0px 14px;
+}
+QAbstractScrollArea QScrollBar::handle:horizontal {
+    background: green;
+    border: 1px solid #FFFFFF;
+    min-width: 20px;
+}
+QAbstractScrollArea QScrollBar::handle:horizontal:hover {
+    background: green;
+    min-height: 20px;
+}
+QAbstractScrollArea QScrollBar::handle:horizontal:pressed {
+    background: #5F9257;
+    min-height: 20px;
+    border: 1px solid #FFFFFF;
+}
+QAbstractScrollArea QScrollBar::add-line:horizontal {
+    width: 15px;
+    subcontrol-position: right;
+    subcontrol-origin: margin;
+    border: 1px solid green;
+    border-left:none;
+    border-bottom:none;	
+}
+QAbstractScrollArea QScrollBar::sub-line:horizontal {
+    width: 15px;
+    subcontrol-position: left;
+    subcontrol-origin: margin;
+    border: 1px solid green;
+    border-left:none;
+    border-right:none;
+    border-bottom:none;
+}
+QAbstractScrollArea QScrollBar::left-arrow:horizontal{
+    width: 14px;
+    height: 14px;
+    background: url(Resource/leftArrow.png);
+}
+QAbstractScrollArea QScrollBar::left-arrow:horizontal:hover{
+    background: url(Resource/leftArrow_hover.png);
+}
+QAbstractScrollArea QScrollBar::left-arrow:horizontal:pressed{
+    background: url(Resource/leftArrow_pressed.png);
+}
+QAbstractScrollArea QScrollBar::right-arrow:horizontal {
+    width: 14px;
+    height: 14px;
+    background: url(Resource/rightArrow.png); 
+}
+QAbstractScrollArea QScrollBar::right-arrow:horizontal:hover{
+    background: url(Resource/rightArrow_hover.png); 
+}
+QAbstractScrollArea QScrollBar::right-arrow:horizontal:pressed{
+    background: url(Resource/rightArrow_pressed.png); 
+}
+QAbstractScrollArea QScrollBar::add-page:horizontal, QAbstractScrollArea QScrollBar::sub-page:horizontal {
+    background: white;
+}
+QLabel {
+   color: black;
+   font-family: "KP CheonRiMa";
+   font-size: 11pt;
+}
+QLabel#label_7 {
+   font-size: 25pt;
+}
+QLabel#label_11{
+   font-size: 25pt;
+}
+QLabel#label_3{
+   font-size: 25pt;
+}
+QLabel#label_2 {
+   font-size: 25pt;
+}
+QLabel#lblTitle {
+   font-size: 25pt;
+}
+QLabel#lblOrg {
+   font-size: 25pt;
+}
+QLabel#lblDeveloper {
+   font-size: 25pt;
+}
+QLabel#lblPart {
+   font-size: 25pt;
+}
+QLabel#lblTotalScore{
+  font-size: 130pt;
+}
+QLabel#lblJudgeState1 {
+  font-size: 20pt;
+}
+QLabel#lblTotalScore1 {
+  font-size: 50pt;
+}
+QTableWidget {
+    border: 1px solid #5F9257;
+    background-color:white;
+    font-family: "KP CheonRiMa";
+    font-size: 11pt;
+}
+QTableWidget::item:selected {
+    background: #e1f0fd;
+    color: #000000;
+}
+QTableWidget>QHeaderView::section {
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1,   stop:0.6 #5F9257, stop:1 #FFFFFF);
+    color: white;
+    height: 25;
+    border-left: none;
+    border-top:none;
+    border-bottom: none;
+    border-right-width: 1px;
+    border-right-color: white;
+    border-right-style: solid;
+    font-family: "KP CheonRiMa";
+    font-size: 11pt;
+    text-align: center;
+    padding: 0px 0px 0px 3px;
+}
+QTabWidget {
+    background: rgb(255, 255, 255);
+    border: 2px solid #5F9257;
+    font-family: "KP CheonRiMa";
+    font-size: 11pt;
+    text-align: center;
+}
+QTabWidget::pane { /* The tab widget frame */
+     border-top: 2px solid #5F9257;
+ }
+QTabBar::tab {
+	font: 11pt;
+	border-top:2px solid #5F9257; 
+	background: rgb(255, 255, 255);
+            min-width: 80px;
+	min-height: 16px;
+            padding: 5px;
+}
+QTabBar::tab:!selected {
+	color:rgb(255,255,255);
+	background: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1,   stop:0.6 #5F9257, stop:1 #FFFFFF);
+            margin-bottom: 0px; 
+}
+QTabBar::tab:selected {
+	color:green;
+}
+QTabBar::tab:disabled {
+    color: none;
+}
+QMessageBox{
+   background-color:white;
+}
+QToolTip{
+    font: 20pt;
+    font-family: "KP CheonRiMa";
+}
+QLabel#lblTotalScore2 {
+   font-size: 180pt;
+   font-family: KCC-R-13;
+   font-weight: bold;
+   color: red;
+}
