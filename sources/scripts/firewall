@@ -215,6 +215,7 @@ iptables -I OUTPUT -p ICMP --icmp-type echo-reply -j ACCEPT
 iptables -I OUTPUT -p udp --dport 33434:33474 -j ACCEPT
 
 #
+#https://unix.stackexchange.com/questions/321210/how-to-see-what-port-was-blocked-in-iptables-log-file
 iptables -N drop-input
 
 iptables -A drop-input -j LOG --log-prefix "INPUT-DROPPED "
