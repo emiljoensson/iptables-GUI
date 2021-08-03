@@ -50,7 +50,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
 
-
+ QSound::play( mediadir + "phone.wav");
 
     /* Setting status button and text accordingly */
     if (firewall.getStatus() == false) {
