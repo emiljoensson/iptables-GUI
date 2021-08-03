@@ -2,12 +2,12 @@
 
 System::System()
 {
-    this->systemPath = "/home/helga/Desktop/firewall"; //System path without trailing slash
+    this->systemPath = "./"; //System path without trailing slash
     this->status = false;
     this->currentProfile = NULL;
 
     //Opening the profileList file to check for profiles
-    QFile profileList("/home/helga/Desktop/firewall/profileList.txt");  //TEMP: CHANGE PATH
+    QFile profileList("./profileList.txt");  //TEMP: CHANGE PATH
     profileList.open(QIODevice::ReadOnly | QIODevice::Text);
     QTextStream in(&profileList);
 
