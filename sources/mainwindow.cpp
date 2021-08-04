@@ -17,7 +17,11 @@
 #include <QMenu>
 #include <QSystemTrayIcon>
 #include <QSound>
+
 QString mediadir = "./media/";
+//system("pkexec mkdir /bin/myDir");
+//run shellscript to set firewall rules
+//
 
 /* Intializing the system class as "firewall" */
 System firewall;
@@ -287,6 +291,9 @@ void MainWindow::on_pushButton_startStop_clicked()
         if (firewall.getStatus() == true) {
             ui->pushButton_startStop->setText("Stop");
             ui->statusLabel->setText("Firewall is ON");
+            system("pkexec ./scripts/firewall");
+            //set options to install systemd script
+          //  system("pkexec cp ./scripts/firewall2.service /etc/systemd/system/");
         } else
             ui->statusLabel->setText("Start FAILED!");
     } else {
@@ -294,6 +301,7 @@ void MainWindow::on_pushButton_startStop_clicked()
         if (firewall.getStatus() == false) {
             ui->pushButton_startStop->setText("Start");
             ui->statusLabel->setText("Firewall is OFF");
+            system("pkexec ./scripts/firewall-off");
         } else
             ui->statusLabel->setText("Stop FAILED!");
     }
