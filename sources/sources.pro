@@ -15,6 +15,7 @@ TEMPLATE = app
 SOURCES += main.cpp\
         mainwindow.cpp \
     palert.cpp \
+    plugin/qonsole.cpp \
     system.cpp \
     service.cpp \
     rule.cpp \
@@ -22,6 +23,7 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     palert.h \
+    plugin/qonsole.h \
     system.h \
     service.h \
     rule.h \
@@ -29,4 +31,5 @@ HEADERS  += mainwindow.h \
 
 FORMS += \
     mainwindow.ui \
-    palert.ui
+    palert.ui \
+    plugin/qonsole.ui
