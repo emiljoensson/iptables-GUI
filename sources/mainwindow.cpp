@@ -603,3 +603,8 @@ void MainWindow::on_pushButton_addRule_clicked()
         ui->label_addRuleError->setText("");
     }
 }
+
+void MainWindow::on_checklogbtn_clicked()
+{
+    //system("pkexec 'cat /var/log/firewall | '");
+}

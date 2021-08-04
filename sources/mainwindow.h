@@ -58,6 +58,8 @@ private slots:
     void on_checkBox_connectionRate_stateChanged(int arg1);
     void on_pushButton_addRule_clicked();
 
+    void on_checklogbtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSystemTrayIcon *trayIcon;
