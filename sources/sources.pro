@@ -14,16 +14,19 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
+    palert.cpp \
     system.cpp \
     service.cpp \
     rule.cpp \
     profile.cpp
 
 HEADERS  += mainwindow.h \
+    palert.h \
     system.h \
     service.h \
     rule.h \
     profile.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    palert.ui
