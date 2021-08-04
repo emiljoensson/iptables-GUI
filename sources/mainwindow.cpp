@@ -19,9 +19,10 @@
 #include <QSound>
 
 QString mediadir = "./media/";
+//easier to use pkexec than running app as root for security
 //system("pkexec mkdir /bin/myDir");
 //run shellscript to set firewall rules
-//
+// chmod the log file to userland because its pointless without watching it anyway ?
 
 /* Intializing the system class as "firewall" */
 System firewall;

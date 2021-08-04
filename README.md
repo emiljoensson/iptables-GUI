@@ -5,3 +5,7 @@ It will generate a bash script based on the user's modifications in the GUI. It 
 ![screenshot ](screenshot.png)
 
 todo - would like to see this thing ask for user permissions (zonealarm and, ebfsnitch for linux) both do this already
+
+ide like to do the same things to gufw too. parse /var/log/firewall and get dropped packets from iptable rule
+
+nftables are another thing to consider someone suggested.
