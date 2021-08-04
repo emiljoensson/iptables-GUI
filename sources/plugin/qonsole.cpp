@@ -1,3 +1,4 @@
+#ifdef plugins
 #include "qonsole.h"
 #include "ui_qonsole.h"
 
@@ -74,3 +75,4 @@ bool Qonsole::eventFilter(QObject *watched, QEvent *event)
 }
 
 
+#endif
