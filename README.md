@@ -9,3 +9,6 @@ todo - would like to see this thing ask for user permissions (zonealarm and, ebf
 ide like to do the same things to gufw too. parse /var/log/firewall and get dropped packets from iptable rule
 
 nftables are another thing to consider someone suggested.
+
+
+i started this project because suse's persistant firewall problems have been around since the new yast gui in like 2000's even in 2021 its still not working very good you can try the iso's out for yourself and try to block any webtraffic.
