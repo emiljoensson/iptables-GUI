@@ -4,7 +4,7 @@
 #
 #-------------------------------------------------
 
-QT       += core gui
+QT       += core gui multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -14,16 +14,22 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
+    palert.cpp \
+    plugin/qonsole.cpp \
     system.cpp \
     service.cpp \
     rule.cpp \
     profile.cpp
 
 HEADERS  += mainwindow.h \
+    palert.h \
+    plugin/qonsole.h \
     system.h \
     service.h \
     rule.h \
     profile.h
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    palert.ui \
+    plugin/qonsole.ui

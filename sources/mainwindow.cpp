@@ -10,6 +10,20 @@
 #include <QSpinBox>
 #include <QPushButton>
 
+#include <QMessageBox>
+#include <QFile>
+#include <QTextStream>
+#include <QTimer>
+#include <QMenu>
+#include <QSystemTrayIcon>
+#include <QSound>
+
+QString mediadir = "./media/";
+//easier to use pkexec than running app as root for security
+//system("pkexec mkdir /bin/myDir");
+//run shellscript to set firewall rules
+// chmod the log file to userland because its pointless without watching it anyway ?
+
 /* Intializing the system class as "firewall" */
 System firewall;
 
@@ -19,6 +33,34 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+
+        QFile stylesheet("./Resource/themes/qdarkstyle/qdarkstyle.qss");
+        stylesheet.open(QFile::ReadOnly);
+        this->setStyleSheet(stylesheet.readAll());
+        stylesheet.close();
+
+    QPixmap oPixmap(32,32);
+    oPixmap.load ( mediadir + "smoking.png");
+
+    QIcon oIcon( oPixmap );
+
+    trayIcon = new QSystemTrayIcon(oIcon);
+
+    QAction *quit_action = new QAction( "Exit", trayIcon );
+    connect( quit_action, SIGNAL(triggered()), this, SLOT(on_exit()) );
+
+    trayIconMenu = new QMenu(this);
+    trayIconMenu->addAction( quit_action );
+
+    trayIcon->setContextMenu( trayIconMenu);
+    trayIcon->setVisible(true);
+    //trayIcon->showMessage("Test Message", "Text", QSystemTrayIcon::Information, 1000);
+    //trayIcon->show();
+
+
+    connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
+
+ QSound::play( mediadir + "phone.wav");
 
     /* Setting status button and text accordingly */
     if (firewall.getStatus() == false) {
@@ -30,7 +72,7 @@ MainWindow::MainWindow(QWidget *parent) :
     }
 
     /* Loading profiles if there are any, otherwise load firstTimeUse mode */
-    if (firewall.getFirstTimeUse() == FALSE) {
+    if (firewall.getFirstTimeUse() == false) {
         this->refreshAllTabs();
     } else {
         this->firstTimeUse();
@@ -41,6 +83,17 @@ MainWindow::MainWindow(QWidget *parent) :
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::showMessage()
+{
+    QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon();
+    trayIcon->showMessage(tr("QSatisfy"), tr("Will you smoke now..."), icon, 100);
+}
+void MainWindow::on_exit()
+{
+    this->close();
+    QApplication::quit();
 }
 
 void MainWindow::refreshAllTabs()
@@ -108,8 +161,8 @@ void MainWindow::refreshProfileTab()
     for (int i=0;i<firewall.getCurrentProfile()->getInterfaceCount();i++)
         ui->comboBox_interface->addItem(firewall.getCurrentProfile()->getInterface(i));
 
-    ui->pushButton_saveProfile->setEnabled(FALSE);
-    ui->pushButton_saveProfile_undo->setEnabled(FALSE);
+    ui->pushButton_saveProfile->setEnabled(false);
+    ui->pushButton_saveProfile_undo->setEnabled(false);
     ui->label_changesDetected->setText("");
 }
 
@@ -239,6 +292,9 @@ void MainWindow::on_pushButton_startStop_clicked()
         if (firewall.getStatus() == true) {
             ui->pushButton_startStop->setText("Stop");
             ui->statusLabel->setText("Firewall is ON");
+            system("pkexec ./scripts/firewall");
+            //set options to install systemd script
+          //  system("pkexec cp ./scripts/firewall2.service /etc/systemd/system/");
         } else
             ui->statusLabel->setText("Start FAILED!");
     } else {
@@ -246,6 +302,7 @@ void MainWindow::on_pushButton_startStop_clicked()
         if (firewall.getStatus() == false) {
             ui->pushButton_startStop->setText("Start");
             ui->statusLabel->setText("Firewall is OFF");
+            system("pkexec ./scripts/firewall-off");
         } else
             ui->statusLabel->setText("Stop FAILED!");
     }
@@ -363,9 +420,9 @@ void MainWindow::on_pushButton_createProfile_clicked()
         for (int i=0;i<nrOfInterfaces;i++)
             interfaces.push_back(ui->listWidget_interfaces->item(i)->text());
 
-        bool firstProfile = FALSE;
-        if (firewall.getFirstTimeUse() == TRUE)
-            firstProfile = TRUE;
+        bool firstProfile = false;
+        if (firewall.getFirstTimeUse() == true)
+            firstProfile = true;
 
         firewall.createProfile(
             ui->lineEdit_newProfileName->text(),
@@ -379,9 +436,9 @@ void MainWindow::on_pushButton_createProfile_clicked()
         ui->comboBox_defaultPolicyOUT->setCurrentIndex(0);
         ui->listWidget_interfaces->clear();
 
-        if (firstProfile == TRUE) {
+        if (firstProfile == true) {
             this->refreshAllTabs();
-            this->firstTimeUse(FALSE);
+            this->firstTimeUse(false);
         } else {
             //Re-filling the change profile comboBox
             ui->comboBox_changeProfileList->clear();
@@ -409,8 +466,8 @@ void MainWindow::on_pushButton_saveProfile_clicked()
         ui->comboBox_defaultPolicyOUT_edit->currentText()
     );
 
-    ui->pushButton_saveProfile->setEnabled(FALSE);
-    ui->pushButton_saveProfile_undo->setEnabled(FALSE);
+    ui->pushButton_saveProfile->setEnabled(false);
+    ui->pushButton_saveProfile_undo->setEnabled(false);
     ui->label_changesDetected->setText("");
     ui->listWidget_interfaces_edit->clear();
     this->refreshProfileTab();
@@ -434,8 +491,8 @@ void MainWindow::on_pushButton_addInterface_edit_clicked()
         ui->listWidget_interfaces_edit->addItem(interface);
         ui->lineEdit_newInterfaceName_edit->setText("");
     }
-    ui->pushButton_saveProfile->setEnabled(TRUE);
-    ui->pushButton_saveProfile_undo->setEnabled(TRUE);
+    ui->pushButton_saveProfile->setEnabled(true);
+    ui->pushButton_saveProfile_undo->setEnabled(true);
     ui->label_changesDetected->setText("Changes detected!");
 }
 
@@ -443,8 +500,8 @@ void MainWindow::on_pushButton_addInterface_edit_clicked()
 void MainWindow::on_comboBox_defaultPolicyIN_edit_currentIndexChanged(const QString &arg1)
 {
     (void)arg1;
-    ui->pushButton_saveProfile->setEnabled(TRUE);
-    ui->pushButton_saveProfile_undo->setEnabled(TRUE);
+    ui->pushButton_saveProfile->setEnabled(true);
+    ui->pushButton_saveProfile_undo->setEnabled(true);
     ui->label_changesDetected->setText("Changes detected!");
 }
 
@@ -452,8 +509,8 @@ void MainWindow::on_comboBox_defaultPolicyIN_edit_currentIndexChanged(const QStr
 void MainWindow::on_comboBox_defaultPolicyOUT_edit_currentIndexChanged(const QString &arg1)
 {
     (void)arg1;
-    ui->pushButton_saveProfile->setEnabled(TRUE);
-    ui->pushButton_saveProfile_undo->setEnabled(TRUE);
+    ui->pushButton_saveProfile->setEnabled(true);
+    ui->pushButton_saveProfile_undo->setEnabled(true);
     ui->label_changesDetected->setText("Changes detected!");
 }
 
@@ -461,16 +518,16 @@ void MainWindow::on_comboBox_defaultPolicyOUT_edit_currentIndexChanged(const QSt
 void MainWindow::on_pushButton_addInterface_edit_delete_clicked()
 {
     delete ui->listWidget_interfaces_edit->currentItem();
-    ui->pushButton_saveProfile->setEnabled(TRUE);
-    ui->pushButton_saveProfile_undo->setEnabled(TRUE);
+    ui->pushButton_saveProfile->setEnabled(true);
+    ui->pushButton_saveProfile_undo->setEnabled(true);
     ui->label_changesDetected->setText("Changes detected!");
 }
 
 /* pushButton: Undo changes to current profile */
 void MainWindow::on_pushButton_saveProfile_undo_clicked()
 {
-    ui->pushButton_saveProfile->setEnabled(FALSE);
-    ui->pushButton_saveProfile_undo->setEnabled(FALSE);
+    ui->pushButton_saveProfile->setEnabled(false);
+    ui->pushButton_saveProfile_undo->setEnabled(false);
     ui->label_changesDetected->setText("");
     ui->listWidget_interfaces_edit->clear();
     this->refreshProfileTab();
@@ -545,4 +602,9 @@ void MainWindow::on_pushButton_addRule_clicked()
         ui->tableWidget_defineRules->setItem(0,0,name);
         ui->label_addRuleError->setText("");
     }
+}
+
+void MainWindow::on_checklogbtn_clicked()
+{
+    //system("pkexec 'cat /var/log/firewall | '");
 }

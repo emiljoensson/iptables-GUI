@@ -2,6 +2,8 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
+#include <QMenu>
+#include <QSystemTrayIcon>
 
 namespace Ui {
 class MainWindow;
@@ -14,6 +16,8 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void iconActivated(QSystemTrayIcon::ActivationReason reason);
+
 
 private slots:
     //Custom functions
@@ -24,6 +28,8 @@ private slots:
     void firstTimeUse(bool trueOrFalse="true");
     void fillServiceRuleTable();
     void fillDefineRulesTable();
+    void on_exit();
+    void showMessage();
 
     void on_pushButton_startStop_clicked();
     void on_pushButton_reloadCustomRules_clicked();
@@ -52,8 +58,12 @@ private slots:
     void on_checkBox_connectionRate_stateChanged(int arg1);
     void on_pushButton_addRule_clicked();
 
+    void on_checklogbtn_clicked();
+
 private:
     Ui::MainWindow *ui;
+    QSystemTrayIcon *trayIcon;
+    QMenu *trayIconMenu;
 };
 
 #endif // MAINWINDOW_H
