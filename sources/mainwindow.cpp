@@ -77,6 +77,8 @@ MainWindow::MainWindow(QWidget *parent) :
     } else {
         this->firstTimeUse();
     }
+
+       e.show();
 }
 
 /* DESTRUCTOR */

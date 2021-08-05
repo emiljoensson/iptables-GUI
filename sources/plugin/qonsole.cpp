@@ -17,8 +17,8 @@ Qonsole::Qonsole(QWidget *parent) :
     m_process->setReadChannelMode(QProcess::MergedChannels);
     connect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(showOutput()));
 
-    QString program = "myscript.sh";
-    m_process->start("/bin/sh", QStringList() << program, QIODevice::ReadWrite);
+ //   QString program = "myscript.sh";
+ //   m_process->start("/bin/sh", QStringList() << program, QIODevice::ReadWrite);
 }
 
 Qonsole::~Qonsole()

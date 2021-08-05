@@ -5,6 +5,10 @@
 #include <QMenu>
 #include <QSystemTrayIcon>
 
+#define plugins
+#include "plugin/qonsole.h"
+#include "ui_qonsole.h"
+
 namespace Ui {
 class MainWindow;
 }
@@ -64,6 +68,7 @@ private:
     Ui::MainWindow *ui;
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
+            Qonsole e;
 };
 
 #endif // MAINWINDOW_H
