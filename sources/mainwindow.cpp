@@ -18,6 +18,9 @@
 #include <QSystemTrayIcon>
 #include <QSound>
 
+#include <QDebug>
+#include <QProcess>
+
 QString mediadir = "./media/";
 //easier to use pkexec than running app as root for security
 //system("pkexec mkdir /bin/myDir");
@@ -78,13 +81,88 @@ MainWindow::MainWindow(QWidget *parent) :
         this->firstTimeUse();
     }
 
+
+#ifdef plugins
        e.show();
+#endif
+
+       /*Setting timer for scanning firewall log */
+       //QTimer timer;
+       connect(&timer, SIGNAL(timeout()), this, SLOT(timerScan()), Qt::DirectConnection);
+       timer.setInterval(2000);//(2000);
+       timer.start();
+
+       //timer.stop();
+
 }
 
 /* DESTRUCTOR */
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::timerScan()
+{
+    static QString lastLine = "";
+    QFile f("/var/log/firewall");//D:\\Data\\Task\\QT\\1.log");
+    //QFile f("D:\\Data\\Task\\QT\\1.log");
+   if (!f.open(QIODevice::ReadWrite | QIODevice::Text))
+       return;
+
+   QTextStream in(&f);
+   QString str = in.readAll();
+
+   str = str.left(str.length() - 2);
+   in.seek(str.lastIndexOf("\n")+2);
+   QString str1 = in.readLine();
+   if (lastLine == str1)
+       return;
+
+   lastLine = str1;
+
+   QRegularExpression reA("([^ ]+)=([^ ]+)");
+
+   QRegularExpressionMatchIterator i = reA.globalMatch(str1);
+   QString proto = "";
+   QString dpt = "";
+   while (i.hasNext()) {
+       QRegularExpressionMatch match = i.next();
+       if (match.hasMatch())
+       {
+            QString item = match.captured(0);
+            int index;
+            index = item.indexOf("PROTO=");
+            if (index >= 0)
+                proto = item.mid(6);
+
+            index = item.indexOf("DPT=");
+            if (index >= 0)
+                dpt = item.mid(4);
+
+       }
+   }
+
+   if (!proto.isEmpty() && !dpt.isEmpty())
+   {
+       setWindowState(windowState() & ~Qt::WindowMinimized | Qt::WindowActive);
+
+       QMessageBox::StandardButton reply;
+       QString text = "Do you want to open " + proto + " port " + dpt + "?";
+
+       reply = QMessageBox::question(this, "Firewall", text,
+                                     QMessageBox::Yes|QMessageBox::No);
+       if (reply == QMessageBox::Yes) {
+           text = "sudo iptables -A INPUT -p " + proto.toLower(); + " --dport " + dpt + " -j ACCEPT";
+           QProcess::execute("/bin/sh", QStringList() << text);
+
+
+       } else {
+         //qDebug() << "Yes was *not* clicked";
+       }
+   }
+
+   f.close();
 }
 
 void MainWindow::showMessage()
@@ -609,4 +687,9 @@ void MainWindow::on_pushButton_addRule_clicked()
 void MainWindow::on_checklogbtn_clicked()
 {
     //system("pkexec 'cat /var/log/firewall | '");
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+
 }

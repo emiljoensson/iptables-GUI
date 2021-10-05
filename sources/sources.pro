@@ -11,7 +11,7 @@ greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 TARGET = sources
 TEMPLATE = app
 
-DEFINES += plugins
+#DEFINES += plugins
 
 
 SOURCES += main.cpp\
