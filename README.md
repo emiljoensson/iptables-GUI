@@ -15,3 +15,15 @@ i started this project because suse's persistant firewall problems have been aro
 
 
 would also like a version of this done in Irrlicht / SDL / and TK / plain bash
+
+
+
+Credits
+
+https://github.com/emiljoensson/ - original author
+
+Netpipe - Clayton Shipton - Project Organizer / Coder
+
+https://www.freelancer.com/u/salavatsemerhano - freelancer used to impliment the palert gui and log monitor
+
+
