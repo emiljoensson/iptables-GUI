@@ -4,6 +4,13 @@
 #include <QMainWindow>
 #include <QMenu>
 #include <QSystemTrayIcon>
+#include <QTimer>
+
+//#define plugins
+#ifdef plugins
+    #include "plugin/qonsole.h"
+    #include "ui_qonsole.h"
+#endif
 
 namespace Ui {
 class MainWindow;
@@ -60,10 +67,16 @@ private slots:
 
     void on_checklogbtn_clicked();
 
+    void timerScan();
+
 private:
     Ui::MainWindow *ui;
     QSystemTrayIcon *trayIcon;
     QMenu *trayIconMenu;
+#ifdef plugins
+    Qonsole e;
+#endif
+    QTimer timer;
 };
 
 #endif // MAINWINDOW_H

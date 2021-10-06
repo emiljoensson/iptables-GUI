@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
 #include "system.h"
+#include "palert.h"
 #include <QDateTime>
 #include <QStandardItemModel>
 #include <QAbstractItemView>
@@ -17,6 +18,8 @@
 #include <QMenu>
 #include <QSystemTrayIcon>
 #include <QSound>
+
+#include <QDebug>
 
 QString mediadir = "./media/";
 //easier to use pkexec than running app as root for security
@@ -77,12 +80,90 @@ MainWindow::MainWindow(QWidget *parent) :
     } else {
         this->firstTimeUse();
     }
+
+
+#ifdef plugins
+       e.show();
+#endif
+
+       /*Setting timer for scanning firewall log */
+       //QTimer timer;
+       connect(&timer, SIGNAL(timeout()), this, SLOT(timerScan()), Qt::DirectConnection);
+       timer.setInterval(2000);//(2000);
+       timer.start();
+
+       //timer.stop();
+
 }
 
 /* DESTRUCTOR */
 MainWindow::~MainWindow()
 {
     delete ui;
+}
+
+void MainWindow::timerScan()
+{
+    static QString lastLine = "";
+    QFile f("/var/log/firewall");
+    //QFile f("D:\\Data\\Task\\QT\\1.log");
+   if (!f.open(QIODevice::ReadWrite | QIODevice::Text))
+       return;
+
+   QTextStream in(&f);
+   QString str = in.readAll();
+
+   str = str.left(str.length() - 2);
+   in.seek(str.lastIndexOf("\n")+2);
+   QString str1 = in.readLine();
+
+   f.close();
+
+   if (lastLine == str1)
+       return;
+
+   lastLine = str1;
+
+   QRegularExpression reA("([^ ]+)=([^ ]+)");
+
+   QRegularExpressionMatchIterator i = reA.globalMatch(str1);
+   QString proto = "";
+   QString dpt = "";
+   PacketInfo info;
+   QMap<QString, QString> map;
+   while (i.hasNext()) {
+       QRegularExpressionMatch match = i.next();
+       if (match.hasMatch())
+       {
+            QString item = match.captured(0);
+            QStringList list = item.split('=');
+            map.insert(list[0], list[1]);
+
+       }
+   }
+
+   proto = map["PROTO"];
+   dpt = map["DPT"];
+   if (!proto.isEmpty() && !dpt.isEmpty())
+   {
+       setWindowState(windowState() & ~Qt::WindowMinimized | Qt::WindowActive);
+
+       palert dlg(this);
+
+       PacketInfo info;
+       info.app = map["PNAME"];
+       info.proto = proto;
+       info.source = map["SRC"] + ":" + map["SPT"];
+       info.dest = map["DST"] + ":" + map["DPT"];
+       info.uid = map["UID"];
+       info.dpt = map["DPT"];
+
+       dlg.setPacketInfo(info);
+
+       dlg.exec();
+
+   }
+
 }
 
 void MainWindow::showMessage()
