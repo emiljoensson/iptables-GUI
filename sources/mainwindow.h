@@ -8,9 +8,9 @@
 
 //#define plugins
 #ifdef plugins
-#include "plugin/qonsole.h"
+    #include "plugin/qonsole.h"
+    #include "ui_qonsole.h"
 #endif
-#include "ui_qonsole.h"
 
 namespace Ui {
 class MainWindow;
@@ -68,8 +68,6 @@ private slots:
     void on_checklogbtn_clicked();
 
     void timerScan();
-
-    void on_pushButton_clicked();
 
 private:
     Ui::MainWindow *ui;
