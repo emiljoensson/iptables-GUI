@@ -18,6 +18,8 @@
 #include <QMenu>
 #include <QSystemTrayIcon>
 #include <QSound>
+#include <QProcess>
+
 
 #include <QDebug>
 
@@ -688,4 +690,60 @@ void MainWindow::on_pushButton_addRule_clicked()
 void MainWindow::on_checklogbtn_clicked()
 {
     //system("pkexec 'cat /var/log/firewall | '");
+
+    QProcess::execute("bash", QStringList() << "-c" << "cat /var/log/firewall > tmplog");
+
+    QString filename="tmplog";
+    QFile file(filename);
+    if(!file.exists()){
+        qDebug() << "no file "<<filename;
+    }else{
+        qDebug() << filename<<" found.";
+    }
+    QString line;
+    ui->logtabedit->clear();
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        QTextStream stream(&file);
+        while (!stream.atEnd()){
+            line = stream.readLine();
+            ui->logtabedit->setText(ui->logtabedit->toPlainText()+line+"\n");
+        }
+    }
+    file.close();
+
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+    QProcess::execute("bash", QStringList() << "-c" << "cat /etc/init.d > tmpiptables");
+
+    QString filename="tmpiptables";
+    QFile file(filename);
+    if(!file.exists()){
+        qDebug() << "no file "<<filename;
+    }else{
+        qDebug() << filename<<" found.";
+    }
+    QString line;
+    ui->inspecttabedit->clear();
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        QTextStream stream(&file);
+        while (!stream.atEnd()){
+            line = stream.readLine();
+            ui->inspecttabedit->setText(ui->inspecttabedit->toPlainText()+line+"\n");
+
+        }
+    }
+    file.close();
+}
+
+void MainWindow::on_checklogbtn_2_clicked()
+{
+
+}
+
+void MainWindow::on_installfirewallbtn_clicked()
+{
+    QProcess::execute("bash", QStringList() << "-c" << "gnomesu cp ./scripts/firewall /etc/init.d/firewall; cp ./scripts/firewall2.service /etc/systemd/system/firewall2.service");
+
 }

@@ -69,6 +69,12 @@ private slots:
 
     void timerScan();
 
+    void on_pushButton_clicked();
+
+    void on_checklogbtn_2_clicked();
+
+    void on_installfirewallbtn_clicked();
+
 private:
     Ui::MainWindow *ui;
     QSystemTrayIcon *trayIcon;
