@@ -691,7 +691,7 @@ void MainWindow::on_checklogbtn_clicked()
 {
     //system("pkexec 'cat /var/log/firewall | '");
 
-    QProcess::execute("bash", QStringList() << "-c" << "cat /var/log/firewall > tmplog");
+    QProcess::execute("bash", QStringList() << "-c" << "pkexec sudo cat /var/log/firewall > tmplog");
 
     QString filename="tmplog";
     QFile file(filename);
@@ -715,7 +715,16 @@ void MainWindow::on_checklogbtn_clicked()
 
 void MainWindow::on_pushButton_clicked()
 {
-    QProcess::execute("bash", QStringList() << "-c" << "cat /etc/init.d > tmpiptables");
+  //  QProcess::execute("bash", QStringList() << "-c" << "pkexec cat /etc/sysconfig/iptables > tmpiptables");
+    QProcess::execute("bash", QStringList() << "-c" << "pkexec sudo iptables -L > tmpiptables");
+  //  QProcess::execute("bash", QStringList() << "-c" << "pkexec ip6tables -L > tmpiptables");
+
+ //   sudo iptables -S.
+        //    sudo iptables -S
+        //     sudo ip6tables -S
+      //      sudo iptables -L
+
+
 
     QString filename="tmpiptables";
     QFile file(filename);
@@ -744,6 +753,6 @@ void MainWindow::on_checklogbtn_2_clicked()
 
 void MainWindow::on_installfirewallbtn_clicked()
 {
-    QProcess::execute("bash", QStringList() << "-c" << "gnomesu cp ./scripts/firewall /etc/init.d/firewall; cp ./scripts/firewall2.service /etc/systemd/system/firewall2.service");
+    QProcess::execute("bash", QStringList() << "-c" << "pkexec sudo cp ./scripts/firewall /etc/init.d/firewall; sudo cp ./scripts/firewall2.service /etc/systemd/system/firewall2.service");
 
 }
