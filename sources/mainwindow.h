@@ -19,7 +19,7 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-    
+    QString fileName;
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -75,6 +75,14 @@ private slots:
 
     void on_installfirewallbtn_clicked();
 
+    void on_ServiceEnable_clicked();
+
+    void on_DisableService_clicked();
+
+    void on_cmbTheme_currentIndexChanged(const QString &arg1);
+void loadStyleSheet(QString sheet_name);
+
+
 private:
     Ui::MainWindow *ui;
     QSystemTrayIcon *trayIcon;
@@ -83,6 +91,7 @@ private:
     Qonsole e;
 #endif
     QTimer timer;
+    bool loaded=0;
 };
 
 #endif // MAINWINDOW_H
