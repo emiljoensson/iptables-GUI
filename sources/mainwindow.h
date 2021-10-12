@@ -71,8 +71,6 @@ private slots:
 
     void on_pushButton_clicked();
 
-    void on_checklogbtn_2_clicked();
-
     void on_installfirewallbtn_clicked();
 
     void on_ServiceEnable_clicked();
@@ -82,6 +80,10 @@ private slots:
     void on_cmbTheme_currentIndexChanged(const QString &arg1);
 void loadStyleSheet(QString sheet_name);
 
+
+void on_Refresh_clicked();
+
+void on_pushButton_saveRules_clicked();
 
 private:
     Ui::MainWindow *ui;

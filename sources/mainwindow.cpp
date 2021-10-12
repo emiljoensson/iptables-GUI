@@ -138,6 +138,8 @@ MainWindow::~MainWindow()
 
 void MainWindow::timerScan()
 {
+
+    //check /var/log/firewall time and date to see if it has changed
     static QString lastLine = "";
     QFile f("/var/log/firewall"); // some systems need root for this so copy it to tmp file every specified time
     //chmod this possibly to allow others to read it only
@@ -846,4 +848,76 @@ void MainWindow::on_cmbTheme_currentIndexChanged(const QString &arg1)
       //   ui->cmbTheme->currentText().toLatin1();
     }
 }
+}
+
+void MainWindow::on_Refresh_clicked()
+{
+//construct the new /scripts/firewall script to run.
+
+
+   // QString text = QString("sudo iptables -A INPUT -p %1 --dport %2 -j ACCEPT").arg(mInfo.proto.toLower(), mInfo.dpt);
+
+  //   QProcess::execute("/bin/sh", QStringList() << text);
+
+    ui->inspecttabedit->insertPlainText("#firewall rules");
+
+    // file open /scripts/firewall-off as a starter
+
+    QString filename="./scripts/firewall-off";
+    QFile file(filename);
+    if(!file.exists()){
+        qDebug() << "no file "<<filename;
+    }else{
+        qDebug() << filename<<" found.";
+    }
+    QString line;
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        QTextStream stream(&file);
+        while (!stream.atEnd()){
+            line = stream.readLine();
+            ui->inspecttabedit->insertPlainText(line+"\n");
+        }
+    }
+    file.close();
+
+
+    for (int i=0;i<ui->tableWidget_serviceRules->rowCount();i++) {
+        QString name = ui->tableWidget_serviceRules->item(i,0)->text();
+        /* Casting our objects from QTableWidgetItem to QComboBox/QSpinBox */
+        QSpinBox* port = qobject_cast<QSpinBox*>(ui->tableWidget_serviceRules->cellWidget(i,1));
+        QComboBox* protocol = qobject_cast<QComboBox*>(ui->tableWidget_serviceRules->cellWidget(i,2));
+        QComboBox* action = qobject_cast<QComboBox*>(ui->tableWidget_serviceRules->cellWidget(i,3));
+
+        ui->inspecttabedit->insertPlainText("#"+name.toLatin1()+"\n");
+        ui->inspecttabedit->insertPlainText( QString("sudo iptables -A INPUT -p %1 --dport %2 -j %3").arg(protocol->currentText().toLatin1(),
+                                                     port->text(),action->currentText().toLatin1()) + "\n");
+
+       }
+
+
+    //add custom rules to end of file
+    ui->inspecttabedit->insertPlainText(ui->plainTextEdit_customRules->document()->toPlainText().toLatin1());
+
+
+//    QString filename2="tmplog";
+//    QFile file2(filename2);
+//    if(!file2.exists()){
+//        qDebug() << "no file "<<filename;
+//    }else{
+//        qDebug() << filename<<" found.";
+//    }
+//    if (file2.open(QIODevice::ReadOnly | QIODevice::Text)){
+//        QTextStream stream2(&file2);
+//        while (!stream2.atEnd()){
+//            line = stream2.readLine();
+// ui->inspecttabedit->insertPlainText(line+"\n");
+//        }
+//    }
+//    file2.close();
+
+}
+
+void MainWindow::on_pushButton_saveRules_clicked()
+{
+
 }
