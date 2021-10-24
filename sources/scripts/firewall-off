@@ -1,0 +1,52 @@
+#!/bin/sh
+#put in systemd script for auto boot
+
+iptables -F
+iptables -X
+iptables -P INPUT DROP
+iptables -P OUTPUT DROP
+iptables -P FORWARD DROP
+# iptables -A INPUT -j DROP
+# iptables -A OUTPUT -j DROP
+# make a commandline addremove feature
+iptables -A INPUT -m state --state RELATED,ESTABLISHED -j ACCEPT
+
+
+# accept ping requests for Windows-style traceroutes
+iptables -I INPUT -p ICMP --icmp-type echo-request -j ACCEPT
+
+# allow ping responses for Windows-style traceroutes
+iptables -I OUTPUT -p ICMP --icmp-type echo-reply -j ACCEPT
+
+# allow the server to perform its own traceroutes
+iptables -I OUTPUT -p udp --dport 33434:33474 -j ACCEPT
+
+#
+#https://unix.stackexchange.com/questions/321210/how-to-see-what-port-was-blocked-in-iptables-log-file
+iptables -N drop-input
+
+iptables -A drop-input -j LOG --log-prefix "INPUT-DROPPED "
+iptables -A drop-input -j DROP
+
+iptables -N drop-output
+
+iptables -A drop-output -j LOG --log-prefix "OUTPUT-DROPPED "
+iptables -A drop-output -j ACCEPT
+
+iptables -A INPUT -j drop-input
+iptables -A OUTPUT -j drop-output
+#
+
+
+
+iptables -I INPUT -p udp -j ACCEPT
+iptables -I OUTPUT -p udp -j ACCEPT
+
+iptables -A INPUT -i lo -j ACCEPT
+iptables -A OUTPUT -o lo -j ACCEPT
+
+iptables -A OUTPUT -j LOG
+iptables -A INPUT -j LOG
+iptables -A FORWARD -j LOG
+ 
+

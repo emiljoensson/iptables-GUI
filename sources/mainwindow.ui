@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>770</width>
-    <height>550</height>
+    <width>886</width>
+    <height>595</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -20,1586 +20,1577 @@
    <string>iptables Made Simple</string>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QTabWidget" name="tabWidget">
-    <property name="enabled">
-     <bool>true</bool>
-    </property>
-    <property name="geometry">
-     <rect>
-      <x>5</x>
-      <y>4</y>
-      <width>760</width>
-      <height>518</height>
-     </rect>
-    </property>
-    <property name="currentIndex">
-     <number>2</number>
-    </property>
-    <widget class="QWidget" name="tab_profile">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <attribute name="title">
-      <string>Profile</string>
-     </attribute>
-     <widget class="Line" name="line_3">
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>110</y>
-        <width>740</width>
-        <height>3</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_welcomeMessage">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>10</y>
-        <width>570</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Droid Sans</family>
-        <pointsize>12</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>label_welcomeMessage</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_newProfileName">
+   <layout class="QGridLayout" name="gridLayout_2">
+    <item row="0" column="0">
+     <widget class="QTabWidget" name="tabs1">
       <property name="enabled">
        <bool>true</bool>
       </property>
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>360</y>
-        <width>50</width>
-        <height>27</height>
-       </rect>
+      <property name="currentIndex">
+       <number>3</number>
       </property>
-      <property name="text">
-       <string>Name</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_newProfileName">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>70</x>
-        <y>360</y>
-        <width>180</width>
-        <height>27</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_dates">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>130</y>
-        <width>340</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_newInterfaceName">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>327</y>
-        <width>160</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="placeholderText">
-       <string>interface name</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_defaultPolicyIN">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>390</y>
-        <width>150</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Default input policy</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_defaultPolicyOUT">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>420</y>
-        <width>150</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Default output policy</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="comboBox_defaultPolicyIN">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>390</y>
-        <width>80</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>accept</string>
+      <widget class="QWidget" name="tab_profile">
+       <property name="enabled">
+        <bool>true</bool>
        </property>
+       <attribute name="title">
+        <string>Profile</string>
+       </attribute>
+       <widget class="Line" name="line_3">
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>110</y>
+          <width>740</width>
+          <height>3</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_welcomeMessage">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>10</y>
+          <width>570</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Droid Sans</family>
+          <pointsize>12</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>label_welcomeMessage</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_newProfileName">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>360</y>
+          <width>50</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Name</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_newProfileName">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>70</x>
+          <y>360</y>
+          <width>180</width>
+          <height>27</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_dates">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>130</y>
+          <width>340</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_newInterfaceName">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>327</y>
+          <width>160</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>interface name</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_defaultPolicyIN">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>390</y>
+          <width>150</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Default input policy</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_defaultPolicyOUT">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>420</y>
+          <width>150</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Default output policy</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="comboBox_defaultPolicyIN">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>390</y>
+          <width>80</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>accept</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>drop</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>reject</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="comboBox_defaultPolicyOUT">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>420</y>
+          <width>80</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>accept</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>drop</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>reject</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="Line" name="line_4">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>300</y>
+          <width>740</width>
+          <height>3</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Horizontal</enum>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_createProfile">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>640</x>
+          <y>454</y>
+          <width>110</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Create Profile</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_currentProfileName">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>40</y>
+          <width>431</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Droid Sans</family>
+          <pointsize>12</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>label_currentProfileName</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_createANewProfile">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>310</y>
+          <width>570</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Create a new profile</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_editActiveProfile">
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>125</y>
+          <width>570</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>12</pointsize>
+          <weight>75</weight>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Edit active profile</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="comboBox_defaultPolicyIN_edit">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>170</y>
+          <width>80</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>accept</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>drop</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>reject</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="comboBox_defaultPolicyOUT_edit">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>200</y>
+          <width>80</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>accept</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>drop</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>reject</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLabel" name="label_defaultPolicyIN_edit">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>170</y>
+          <width>150</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Default input policy</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_defaultPolicyOUT_edit">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>200</y>
+          <width>150</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Default output policy</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_addInterface">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>326</y>
+          <width>70</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Add</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_newInterfaceName_edit">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>138</y>
+          <width>160</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="placeholderText">
+         <string>interface name</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_addInterface_edit">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>470</x>
+          <y>138</y>
+          <width>70</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Add</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_saveProfile">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>650</x>
+          <y>264</y>
+          <width>100</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Save Profile</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_changeProfile">
+        <property name="geometry">
+         <rect>
+          <x>480</x>
+          <y>10</y>
+          <width>140</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Droid Sans</family>
+          <pointsize>10</pointsize>
+          <weight>75</weight>
+          <italic>false</italic>
+          <bold>true</bold>
+         </font>
+        </property>
+        <property name="text">
+         <string>Change active profile</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="comboBox_changeProfileList">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>480</x>
+          <y>40</y>
+          <width>140</width>
+          <height>27</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_changeProfile">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>630</x>
+          <y>40</y>
+          <width>110</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Change Profile</string>
+        </property>
+       </widget>
+       <widget class="QListWidget" name="listWidget_interfaces_edit">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>170</y>
+          <width>240</width>
+          <height>80</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_created">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>230</y>
+          <width>60</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Created:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_createdDate">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>230</y>
+          <width>110</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>createdDate</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_lastEdited">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>10</x>
+          <y>260</y>
+          <width>80</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Last edited:</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_editedDate">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>170</x>
+          <y>260</y>
+          <width>110</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>editedDate</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_saveProfile_undo">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>650</x>
+          <y>230</y>
+          <width>100</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Undo Changes</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_changesDetected">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>647</x>
+          <y>200</y>
+          <width>103</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <family>Droid Sans Armenian</family>
+          <italic>true</italic>
+         </font>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_addInterface_edit_delete">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>255</y>
+          <width>110</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Delete selected</string>
+        </property>
+       </widget>
+       <widget class="QListWidget" name="listWidget_interfaces">
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>360</y>
+          <width>240</width>
+          <height>80</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_addInterface_delete">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>300</x>
+          <y>445</y>
+          <width>110</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Delete selected</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="cmbTheme">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>339</x>
+          <y>70</y>
+          <width>281</width>
+          <height>27</height>
+         </rect>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_services">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <attribute name="title">
+        <string>Services</string>
+       </attribute>
+       <widget class="QLineEdit" name="lineEdit_newServiceRuleName">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>35</y>
+          <width>170</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Name</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_newServiceRuleHeader">
+        <property name="geometry">
+         <rect>
+          <x>553</x>
+          <y>10</y>
+          <width>150</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>Add new service rule</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="comboBox_newServiceRuleProtocol">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>105</y>
+          <width>170</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>-- Protocol -- </string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>tcp</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>udp</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>tcp/udp</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QPushButton" name="pushButton_newServiceRuleAdd">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>175</y>
+          <width>70</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Add</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="comboBox_newServiceRuleAction">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>140</y>
+          <width>170</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>-- Action --</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>drop</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>accept</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>reject</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QPushButton" name="pushButton_newServiceRuleClear">
+        <property name="geometry">
+         <rect>
+          <x>650</x>
+          <y>175</y>
+          <width>70</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Clear</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="spinBox_newServiceRulePort">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>70</y>
+          <width>170</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="maximum">
+         <number>65535</number>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_newServiceRuleFooter">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>210</y>
+          <width>190</width>
+          <height>50</height>
+         </rect>
+        </property>
+        <property name="cursor">
+         <cursorShape>ArrowCursor</cursorShape>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+        <property name="wordWrap">
+         <bool>true</bool>
+        </property>
+       </widget>
+       <widget class="QTableWidget" name="tableWidget_serviceRules">
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>10</y>
+          <width>530</width>
+          <height>445</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_saveServices">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>460</y>
+          <width>90</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Save</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_undoServices">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>460</y>
+          <width>90</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Undo</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_editStatus">
+        <property name="geometry">
+         <rect>
+          <x>210</x>
+          <y>460</y>
+          <width>320</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_removeSelectedServices">
+        <property name="geometry">
+         <rect>
+          <x>549</x>
+          <y>310</y>
+          <width>120</width>
+          <height>30</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Remove selected</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_newServiceRuleHeader_2">
+        <property name="geometry">
+         <rect>
+          <x>550</x>
+          <y>280</y>
+          <width>150</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="layoutDirection">
+         <enum>Qt::LeftToRight</enum>
+        </property>
+        <property name="text">
+         <string>Delete a service rule</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_rules">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <attribute name="title">
+        <string>Define Rules</string>
+       </attribute>
+       <widget class="QLineEdit" name="lineEdit_sIP">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>8</y>
+          <width>170</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QDoubleSpinBox" name="doubleSpinBox_priority">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>10</y>
+          <width>90</width>
+          <height>27</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_priority">
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>10</y>
+          <width>66</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Priority</string>
+        </property>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_dIP">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>68</y>
+          <width>170</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_action">
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>40</y>
+          <width>66</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Action</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="comboBox_action">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>40</y>
+          <width>90</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>accept</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>drop</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>reject</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QLabel" name="label_protocol">
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>70</y>
+          <width>66</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Protocol</string>
+        </property>
+       </widget>
+       <widget class="QComboBox" name="comboBox_protocol">
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>70</y>
+          <width>90</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <item>
+         <property name="text">
+          <string>tcp</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>udp</string>
+         </property>
+        </item>
+        <item>
+         <property name="text">
+          <string>tcp/udp</string>
+         </property>
+        </item>
+       </widget>
+       <widget class="QComboBox" name="comboBox_interface">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>80</x>
+          <y>100</y>
+          <width>90</width>
+          <height>27</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_interface">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>100</y>
+          <width>66</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Interface</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_connectionAmount">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>540</x>
+          <y>10</y>
+          <width>190</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Amount of connections</string>
+        </property>
+       </widget>
+       <widget class="Line" name="line">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>173</x>
+          <y>10</y>
+          <width>31</width>
+          <height>110</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="Line" name="line_2">
+        <property name="geometry">
+         <rect>
+          <x>513</x>
+          <y>10</y>
+          <width>20</width>
+          <height>140</height>
+         </rect>
+        </property>
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="spinBox_maxActive">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>660</x>
+          <y>40</y>
+          <width>78</width>
+          <height>27</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_maxActive">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>540</x>
+          <y>40</y>
+          <width>100</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Max active</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_perSecond">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>540</x>
+          <y>100</y>
+          <width>110</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Per second</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="spinBox_perSecond">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>660</x>
+          <y>100</y>
+          <width>78</width>
+          <height>27</height>
+         </rect>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_connectionRate">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>540</x>
+          <y>70</y>
+          <width>190</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Connection rates</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_saveRules">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>460</y>
+          <width>90</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Save</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_undoRules">
+        <property name="geometry">
+         <rect>
+          <x>100</x>
+          <y>460</y>
+          <width>90</width>
+          <height>20</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Undo</string>
+        </property>
+       </widget>
+       <widget class="QPushButton" name="pushButton_addRule">
+        <property name="enabled">
+         <bool>true</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>180</x>
+          <y>130</y>
+          <width>90</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Add</string>
+        </property>
+       </widget>
+       <widget class="QTableWidget" name="tableWidget_defineRules">
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>160</y>
+          <width>745</width>
+          <height>295</height>
+         </rect>
+        </property>
+        <column>
+         <property name="text">
+          <string>Alias</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Source</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Destination</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Protocol</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Interface</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Action</string>
+         </property>
+        </column>
+        <column>
+         <property name="text">
+          <string>Limits</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QLineEdit" name="lineEdit_ruleAlias">
+        <property name="geometry">
+         <rect>
+          <x>5</x>
+          <y>130</y>
+          <width>170</width>
+          <height>27</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Alias</string>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="spinBox_dPort">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>98</y>
+          <width>90</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>0</number>
+        </property>
+        <property name="maximum">
+         <number>65535</number>
+        </property>
+        <property name="value">
+         <number>0</number>
+        </property>
+       </widget>
+       <widget class="QSpinBox" name="spinBox_sPort">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>340</x>
+          <y>38</y>
+          <width>90</width>
+          <height>25</height>
+         </rect>
+        </property>
+        <property name="minimum">
+         <number>0</number>
+        </property>
+        <property name="maximum">
+         <number>65535</number>
+        </property>
+        <property name="value">
+         <number>0</number>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_sIP">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>10</y>
+          <width>91</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Source IP</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_sPort">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>40</y>
+          <width>100</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Source Port</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_dIP">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>70</y>
+          <width>120</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Destination IP</string>
+        </property>
+       </widget>
+       <widget class="QCheckBox" name="checkBox_dPort">
+        <property name="geometry">
+         <rect>
+          <x>200</x>
+          <y>100</y>
+          <width>130</width>
+          <height>21</height>
+         </rect>
+        </property>
+        <property name="text">
+         <string>Destination Port</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_rateInfo">
+        <property name="enabled">
+         <bool>false</bool>
+        </property>
+        <property name="geometry">
+         <rect>
+          <x>534</x>
+          <y>138</y>
+          <width>210</width>
+          <height>10</height>
+         </rect>
+        </property>
+        <property name="font">
+         <font>
+          <pointsize>8</pointsize>
+          <italic>true</italic>
+         </font>
+        </property>
+        <property name="text">
+         <string>Rate limits are based on per IP-address</string>
+        </property>
+       </widget>
+       <widget class="QLabel" name="label_addRuleError">
+        <property name="geometry">
+         <rect>
+          <x>275</x>
+          <y>137</y>
+          <width>240</width>
+          <height>15</height>
+         </rect>
+        </property>
+        <property name="autoFillBackground">
+         <bool>false</bool>
+        </property>
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
+      </widget>
+      <widget class="QWidget" name="tab_custom">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <attribute name="title">
+        <string>Custom Rules</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout">
+        <item row="0" column="0" colspan="2">
+         <widget class="QLabel" name="label_customRulesHeader">
+          <property name="text">
+           <string>Enter your custom rules here, one rule per line. These rules will be executed last.</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0" colspan="2">
+         <widget class="QPlainTextEdit" name="plainTextEdit_customRules"/>
+        </item>
+        <item row="2" column="0">
+         <widget class="QLabel" name="label_customRulesFooter">
+          <property name="text">
+           <string/>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="1">
+         <widget class="QPushButton" name="pushButton_reloadCustomRules">
+          <property name="enabled">
+           <bool>true</bool>
+          </property>
+          <property name="text">
+           <string>Reload</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab_logs">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <attribute name="title">
+        <string>Logs</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_3">
+        <item row="0" column="0">
+         <widget class="QPushButton" name="checklogbtn">
+          <property name="text">
+           <string>check /var/log/firewall</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QTextEdit" name="logtabedit"/>
+        </item>
+       </layout>
+      </widget>
+      <widget class="QWidget" name="tab">
+       <attribute name="title">
+        <string>Inspect</string>
+       </attribute>
+       <layout class="QGridLayout" name="gridLayout_4">
+        <item row="0" column="0" colspan="2">
+         <widget class="QPushButton" name="installfirewallbtn">
+          <property name="text">
+           <string>install /etc/init.d/firewall and /etc/systemd/system/firewall2.service file</string>
+          </property>
+         </widget>
+        </item>
+        <item row="2" column="0" colspan="4">
+         <widget class="QTextEdit" name="inspecttabedit"/>
+        </item>
+        <item row="1" column="1">
+         <widget class="QPushButton" name="DisableService">
+          <property name="text">
+           <string>Disable Service</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="0">
+         <widget class="QPushButton" name="ServiceEnable">
+          <property name="text">
+           <string>Enable Service</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="2">
+         <widget class="QPushButton" name="pushButton">
+          <property name="text">
+           <string>inspect iptables</string>
+          </property>
+         </widget>
+        </item>
+        <item row="1" column="3">
+         <widget class="QPushButton" name="Refresh">
+          <property name="text">
+           <string>Refresh</string>
+          </property>
+         </widget>
+        </item>
+        <item row="0" column="2">
+         <widget class="QPushButton" name="writeFW">
+          <property name="text">
+           <string>Write to /initd/firewall</string>
+          </property>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </widget>
+    </item>
+    <item row="1" column="0">
+     <layout class="QHBoxLayout" name="horizontalLayout_2">
+      <item>
+       <widget class="QLabel" name="statusLabel">
+        <property name="text">
+         <string>statusLabel</string>
+        </property>
+        <property name="alignment">
+         <set>Qt::AlignCenter</set>
+        </property>
+       </widget>
       </item>
       <item>
-       <property name="text">
-        <string>drop</string>
-       </property>
+       <widget class="QPushButton" name="pushButton_startStop">
+        <property name="text">
+         <string/>
+        </property>
+       </widget>
       </item>
-      <item>
-       <property name="text">
-        <string>reject</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QComboBox" name="comboBox_defaultPolicyOUT">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>420</y>
-        <width>80</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>accept</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>drop</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>reject</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="Line" name="line_4">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>300</y>
-        <width>740</width>
-        <height>3</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_createProfile">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>640</x>
-        <y>454</y>
-        <width>110</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Create Profile</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_currentProfileName">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>40</y>
-        <width>431</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Droid Sans</family>
-        <pointsize>12</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>label_currentProfileName</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_createANewProfile">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>310</y>
-        <width>570</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Create a new profile</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_editActiveProfile">
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>125</y>
-        <width>570</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>12</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Edit active profile</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="comboBox_defaultPolicyIN_edit">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>170</y>
-        <width>80</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>accept</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>drop</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>reject</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QComboBox" name="comboBox_defaultPolicyOUT_edit">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>200</y>
-        <width>80</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>accept</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>drop</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>reject</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="label_defaultPolicyIN_edit">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>170</y>
-        <width>150</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Default input policy</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_defaultPolicyOUT_edit">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>200</y>
-        <width>150</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Default output policy</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_addInterface">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>470</x>
-        <y>326</y>
-        <width>70</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Add</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_newInterfaceName_edit">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>138</y>
-        <width>160</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="placeholderText">
-       <string>interface name</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_addInterface_edit">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>470</x>
-        <y>138</y>
-        <width>70</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Add</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_saveProfile">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>650</x>
-        <y>264</y>
-        <width>100</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Save Profile</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_changeProfile">
-      <property name="geometry">
-       <rect>
-        <x>480</x>
-        <y>10</y>
-        <width>140</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Droid Sans</family>
-        <pointsize>10</pointsize>
-        <weight>75</weight>
-        <italic>false</italic>
-        <bold>true</bold>
-       </font>
-      </property>
-      <property name="text">
-       <string>Change active profile</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="comboBox_changeProfileList">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>480</x>
-        <y>40</y>
-        <width>140</width>
-        <height>27</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_changeProfile">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>630</x>
-        <y>40</y>
-        <width>110</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Change Profile</string>
-      </property>
-     </widget>
-     <widget class="QListWidget" name="listWidget_interfaces_edit">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>170</y>
-        <width>240</width>
-        <height>80</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_created">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>230</y>
-        <width>60</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Created:</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_createdDate">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>230</y>
-        <width>110</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>createdDate</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_lastEdited">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>10</x>
-        <y>260</y>
-        <width>80</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Last edited:</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_editedDate">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>170</x>
-        <y>260</y>
-        <width>110</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>editedDate</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_saveProfile_undo">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>650</x>
-        <y>230</y>
-        <width>100</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Undo Changes</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_changesDetected">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>647</x>
-        <y>200</y>
-        <width>103</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <family>Droid Sans Armenian</family>
-        <italic>true</italic>
-       </font>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignCenter</set>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_addInterface_edit_delete">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>255</y>
-        <width>110</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Delete selected</string>
-      </property>
-     </widget>
-     <widget class="QListWidget" name="listWidget_interfaces">
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>360</y>
-        <width>240</width>
-        <height>80</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_addInterface_delete">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>300</x>
-        <y>445</y>
-        <width>110</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Delete selected</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_services">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <attribute name="title">
-      <string>Services</string>
-     </attribute>
-     <widget class="QLineEdit" name="lineEdit_newServiceRuleName">
-      <property name="geometry">
-       <rect>
-        <x>550</x>
-        <y>35</y>
-        <width>170</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Name</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_newServiceRuleHeader">
-      <property name="geometry">
-       <rect>
-        <x>553</x>
-        <y>10</y>
-        <width>150</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="text">
-       <string>Add new service rule</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="comboBox_newServiceRuleProtocol">
-      <property name="geometry">
-       <rect>
-        <x>550</x>
-        <y>105</y>
-        <width>170</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>-- Protocol -- </string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>tcp</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>udp</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>tcp/udp</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QPushButton" name="pushButton_newServiceRuleAdd">
-      <property name="geometry">
-       <rect>
-        <x>550</x>
-        <y>175</y>
-        <width>70</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Add</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="comboBox_newServiceRuleAction">
-      <property name="geometry">
-       <rect>
-        <x>550</x>
-        <y>140</y>
-        <width>170</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>-- Action --</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>drop</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>accept</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>reject</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QPushButton" name="pushButton_newServiceRuleClear">
-      <property name="geometry">
-       <rect>
-        <x>650</x>
-        <y>175</y>
-        <width>70</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Clear</string>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="spinBox_newServiceRulePort">
-      <property name="geometry">
-       <rect>
-        <x>550</x>
-        <y>70</y>
-        <width>170</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="maximum">
-       <number>65535</number>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_newServiceRuleFooter">
-      <property name="geometry">
-       <rect>
-        <x>550</x>
-        <y>210</y>
-        <width>190</width>
-        <height>50</height>
-       </rect>
-      </property>
-      <property name="cursor">
-       <cursorShape>ArrowCursor</cursorShape>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="wordWrap">
-       <bool>true</bool>
-      </property>
-     </widget>
-     <widget class="QTableWidget" name="tableWidget_serviceRules">
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>10</y>
-        <width>530</width>
-        <height>445</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_saveServices">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>460</y>
-        <width>90</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Save</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_undoServices">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>460</y>
-        <width>90</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Undo</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_editStatus">
-      <property name="geometry">
-       <rect>
-        <x>210</x>
-        <y>460</y>
-        <width>320</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_removeSelectedServices">
-      <property name="geometry">
-       <rect>
-        <x>549</x>
-        <y>310</y>
-        <width>120</width>
-        <height>30</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Remove selected</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_newServiceRuleHeader_2">
-      <property name="geometry">
-       <rect>
-        <x>550</x>
-        <y>280</y>
-        <width>150</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="layoutDirection">
-       <enum>Qt::LeftToRight</enum>
-      </property>
-      <property name="text">
-       <string>Delete a service rule</string>
-      </property>
-      <property name="alignment">
-       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_rules">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <attribute name="title">
-      <string>Define Rules</string>
-     </attribute>
-     <widget class="QLineEdit" name="lineEdit_sIP">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>340</x>
-        <y>8</y>
-        <width>170</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QDoubleSpinBox" name="doubleSpinBox_priority">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>10</y>
-        <width>90</width>
-        <height>27</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_priority">
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>10</y>
-        <width>66</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Priority</string>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_dIP">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>340</x>
-        <y>68</y>
-        <width>170</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_action">
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>40</y>
-        <width>66</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Action</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="comboBox_action">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>40</y>
-        <width>90</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>accept</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>drop</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>reject</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QLabel" name="label_protocol">
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>70</y>
-        <width>66</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Protocol</string>
-      </property>
-     </widget>
-     <widget class="QComboBox" name="comboBox_protocol">
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>70</y>
-        <width>90</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <item>
-       <property name="text">
-        <string>tcp</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>udp</string>
-       </property>
-      </item>
-      <item>
-       <property name="text">
-        <string>tcp/udp</string>
-       </property>
-      </item>
-     </widget>
-     <widget class="QComboBox" name="comboBox_interface">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>80</x>
-        <y>100</y>
-        <width>90</width>
-        <height>27</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_interface">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>100</y>
-        <width>66</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Interface</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_connectionAmount">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>10</y>
-        <width>190</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Amount of connections</string>
-      </property>
-     </widget>
-     <widget class="Line" name="line">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>173</x>
-        <y>10</y>
-        <width>31</width>
-        <height>110</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-     </widget>
-     <widget class="Line" name="line_2">
-      <property name="geometry">
-       <rect>
-        <x>513</x>
-        <y>10</y>
-        <width>20</width>
-        <height>140</height>
-       </rect>
-      </property>
-      <property name="orientation">
-       <enum>Qt::Vertical</enum>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="spinBox_maxActive">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>660</x>
-        <y>40</y>
-        <width>78</width>
-        <height>27</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_maxActive">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>40</y>
-        <width>100</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Max active</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_perSecond">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>100</y>
-        <width>110</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Per second</string>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="spinBox_perSecond">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>660</x>
-        <y>100</y>
-        <width>78</width>
-        <height>27</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_connectionRate">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>540</x>
-        <y>70</y>
-        <width>190</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Connection rates</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_saveRules">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>460</y>
-        <width>90</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Save</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_undoRules">
-      <property name="geometry">
-       <rect>
-        <x>100</x>
-        <y>460</y>
-        <width>90</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Undo</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_addRule">
-      <property name="enabled">
-       <bool>true</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>180</x>
-        <y>130</y>
-        <width>90</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Add</string>
-      </property>
-     </widget>
-     <widget class="QTableWidget" name="tableWidget_defineRules">
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>160</y>
-        <width>745</width>
-        <height>295</height>
-       </rect>
-      </property>
-      <column>
-       <property name="text">
-        <string>Alias</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Source</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Destination</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Protocol</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Interface</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Action</string>
-       </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>Limits</string>
-       </property>
-      </column>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_ruleAlias">
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>130</y>
-        <width>170</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Alias</string>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="spinBox_dPort">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>340</x>
-        <y>98</y>
-        <width>90</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="minimum">
-       <number>0</number>
-      </property>
-      <property name="maximum">
-       <number>65535</number>
-      </property>
-      <property name="value">
-       <number>0</number>
-      </property>
-     </widget>
-     <widget class="QSpinBox" name="spinBox_sPort">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>340</x>
-        <y>38</y>
-        <width>90</width>
-        <height>25</height>
-       </rect>
-      </property>
-      <property name="minimum">
-       <number>0</number>
-      </property>
-      <property name="maximum">
-       <number>65535</number>
-      </property>
-      <property name="value">
-       <number>0</number>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_sIP">
-      <property name="geometry">
-       <rect>
-        <x>200</x>
-        <y>10</y>
-        <width>91</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Source IP</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_sPort">
-      <property name="geometry">
-       <rect>
-        <x>200</x>
-        <y>40</y>
-        <width>100</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Source Port</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_dIP">
-      <property name="geometry">
-       <rect>
-        <x>200</x>
-        <y>70</y>
-        <width>120</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Destination IP</string>
-      </property>
-     </widget>
-     <widget class="QCheckBox" name="checkBox_dPort">
-      <property name="geometry">
-       <rect>
-        <x>200</x>
-        <y>100</y>
-        <width>130</width>
-        <height>21</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Destination Port</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_rateInfo">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>534</x>
-        <y>138</y>
-        <width>210</width>
-        <height>10</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>8</pointsize>
-        <italic>true</italic>
-       </font>
-      </property>
-      <property name="text">
-       <string>Rate limits are based on per IP-address</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_addRuleError">
-      <property name="geometry">
-       <rect>
-        <x>275</x>
-        <y>137</y>
-        <width>240</width>
-        <height>15</height>
-       </rect>
-      </property>
-      <property name="autoFillBackground">
-       <bool>false</bool>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_custom">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <attribute name="title">
-      <string>Custom Rules</string>
-     </attribute>
-     <widget class="QPlainTextEdit" name="plainTextEdit_customRules">
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>30</y>
-        <width>745</width>
-        <height>425</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_customRulesHeader">
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>10</y>
-        <width>720</width>
-        <height>15</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Enter your custom rules here, one rule per line. These rules will be executed last.</string>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="pushButton_reloadCustomRules">
-      <property name="enabled">
-       <bool>false</bool>
-      </property>
-      <property name="geometry">
-       <rect>
-        <x>651</x>
-        <y>460</y>
-        <width>100</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>Reload</string>
-      </property>
-     </widget>
-     <widget class="QLabel" name="label_customRulesFooter">
-      <property name="geometry">
-       <rect>
-        <x>5</x>
-        <y>460</y>
-        <width>610</width>
-        <height>20</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab_logs">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <attribute name="title">
-      <string>Logs</string>
-     </attribute>
-     <widget class="QListWidget" name="listWidget">
-      <property name="geometry">
-       <rect>
-        <x>40</x>
-        <y>120</y>
-        <width>631</width>
-        <height>291</height>
-       </rect>
-      </property>
-     </widget>
-     <widget class="QPushButton" name="checklogbtn">
-      <property name="geometry">
-       <rect>
-        <x>470</x>
-        <y>40</y>
-        <width>201</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>check /var/log/firewall</string>
-      </property>
-     </widget>
-    </widget>
-    <widget class="QWidget" name="tab">
-     <attribute name="title">
-      <string>Inspect</string>
-     </attribute>
-     <widget class="QPushButton" name="pushButton">
-      <property name="geometry">
-       <rect>
-        <x>510</x>
-        <y>50</y>
-        <width>151</width>
-        <height>27</height>
-       </rect>
-      </property>
-      <property name="text">
-       <string>inspect iptables</string>
-      </property>
-     </widget>
-     <widget class="QTextEdit" name="textEdit">
-      <property name="geometry">
-       <rect>
-        <x>60</x>
-        <y>100</y>
-        <width>591</width>
-        <height>361</height>
-       </rect>
-      </property>
-     </widget>
-    </widget>
-   </widget>
-   <widget class="QPushButton" name="pushButton_startStop">
-    <property name="geometry">
-     <rect>
-      <x>685</x>
-      <y>2</y>
-      <width>81</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string/>
-    </property>
-   </widget>
-   <widget class="QLabel" name="statusLabel">
-    <property name="geometry">
-     <rect>
-      <x>510</x>
-      <y>0</y>
-      <width>140</width>
-      <height>30</height>
-     </rect>
-    </property>
-    <property name="text">
-     <string>statusLabel</string>
-    </property>
-    <property name="alignment">
-     <set>Qt::AlignCenter</set>
-    </property>
-   </widget>
+     </layout>
+    </item>
+   </layout>
   </widget>
   <widget class="QStatusBar" name="statusBar">
    <property name="enabled">

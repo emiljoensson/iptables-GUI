@@ -12,12 +12,17 @@ Qonsole::Qonsole(QWidget *parent) :
     ui->edt_log->installEventFilter(this);
     ui->edt_log->setLineWrapMode(QTextEdit::WidgetWidth);
 
+    ui->edt_input->setVisible(false);
+
     m_process = new QProcess(this);
     m_process->setReadChannelMode(QProcess::MergedChannels);
     connect(m_process, SIGNAL(readyReadStandardOutput()), this, SLOT(showOutput()));
 
     QString program = "myscript.sh";
     m_process->start("/bin/sh", QStringList() << program, QIODevice::ReadWrite);
+   // m_process->start("python", QIODevice::ReadWrite);
+
+    //m_process->start("cmd", QStringList() << program, QIODevice::ReadWrite);
 }
 
 Qonsole::~Qonsole()
@@ -57,6 +62,7 @@ bool Qonsole::eventFilter(QObject *watched, QEvent *event)
         QString key_str = key_event->text();
 
         ui->edt_input->insertPlainText(key_str);
+        ui->edt_log->insertPlainText(key_str);
 
         if ((key == Qt::Key_Return) || (key == Qt::Key_Enter) )
         {

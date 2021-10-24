@@ -18,6 +18,9 @@
 #include <QMenu>
 #include <QSystemTrayIcon>
 #include <QSound>
+#include <QProcess>
+#include <QDirIterator>
+
 
 #include <QDebug>
 
@@ -37,10 +40,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-        QFile stylesheet("./Resource/themes/qdarkstyle/qdarkstyle.qss");
-        stylesheet.open(QFile::ReadOnly);
-        this->setStyleSheet(stylesheet.readAll());
-        stylesheet.close();
+//    QFile stylesheet("./Resource/themes/qdarkstyle/qdarkstyle.qss");
+//    stylesheet.open(QFile::ReadOnly);
+//    this->setStyleSheet(stylesheet.readAll());
+//    stylesheet.close();
 
     QPixmap oPixmap(32,32);
     oPixmap.load ( mediadir + "smoking.png");
@@ -63,7 +66,7 @@ MainWindow::MainWindow(QWidget *parent) :
 
     connect(trayIcon, SIGNAL(activated(QSystemTrayIcon::ActivationReason)), this, SLOT(iconActivated(QSystemTrayIcon::ActivationReason)));
 
- QSound::play( mediadir + "phone.wav");
+ //QSound::play( mediadir + "phone.wav");
 
     /* Setting status button and text accordingly */
     if (firewall.getStatus() == false) {
@@ -94,6 +97,37 @@ MainWindow::MainWindow(QWidget *parent) :
 
        //timer.stop();
 
+       QDirIterator it("./Resource/themes/", QStringList() << "*.qss", QDir::Files, QDirIterator::Subdirectories);
+       while (it.hasNext()){
+         //  QFileInfo fileInfo(f.fileName());
+           ui->cmbTheme->addItem(it.next().toLatin1());
+       }
+
+
+       QFile MyFile("themes.txt");
+       if(MyFile.exists()){
+           MyFile.open(QIODevice::ReadWrite);
+           QTextStream in (&MyFile);
+           QString line;
+           QStringList list;
+            //   QList<QString> nums;
+           QStringList nums;
+           QRegExp rx("[:]");
+           line = in.readLine();
+     QString stylesheet;
+           if (line.contains(":")) {
+               list = line.split(rx);
+                   qDebug() << "theme" <<  list.at(1).toLatin1();
+                   stylesheet =  list.at(1).toLatin1();
+             loadStyleSheet( list.at(1).toLatin1());
+
+                   MyFile.close();
+           }
+
+         fileName=stylesheet;
+           QFile file(stylesheet);
+}
+loaded=true;
 }
 
 /* DESTRUCTOR */
@@ -104,8 +138,12 @@ MainWindow::~MainWindow()
 
 void MainWindow::timerScan()
 {
+
+    //check /var/log/firewall time and date to see if it has changed
     static QString lastLine = "";
-    QFile f("/var/log/firewall");
+    QFile f("/var/log/firewall"); // some systems need root for this so copy it to tmp file every specified time
+    //chmod this possibly to allow others to read it only
+    //message box saying to get root permissions otherwise
     //QFile f("D:\\Data\\Task\\QT\\1.log");
    if (!f.open(QIODevice::ReadWrite | QIODevice::Text))
        return;
@@ -169,7 +207,9 @@ void MainWindow::timerScan()
 void MainWindow::showMessage()
 {
     QSystemTrayIcon::MessageIcon icon = QSystemTrayIcon::MessageIcon();
-    trayIcon->showMessage(tr("QSatisfy"), tr("Will you smoke now..."), icon, 100);
+    trayIcon->showMessage(tr("QSatisfy"), tr("Firewall Alert"), icon, 100);
+    QSound::play( mediadir + "phone.wav");
+
 }
 void MainWindow::on_exit()
 {
@@ -373,9 +413,9 @@ void MainWindow::on_pushButton_startStop_clicked()
         if (firewall.getStatus() == true) {
             ui->pushButton_startStop->setText("Stop");
             ui->statusLabel->setText("Firewall is ON");
-            system("pkexec ./scripts/firewall");
+            system("pkexec sudo ./firewalltmp"); // append new rules to /scripts/firewall
             //set options to install systemd script
-          //  system("pkexec cp ./scripts/firewall2.service /etc/systemd/system/");
+           // system("pkexec sudo systemctl service firewall2 start");
         } else
             ui->statusLabel->setText("Start FAILED!");
     } else {
@@ -383,7 +423,8 @@ void MainWindow::on_pushButton_startStop_clicked()
         if (firewall.getStatus() == false) {
             ui->pushButton_startStop->setText("Start");
             ui->statusLabel->setText("Firewall is OFF");
-            system("pkexec ./scripts/firewall-off");
+            system("pkexec sudo ./scripts/firewall-off"); // might be able to put basic rules here or disable firewall completely with iptables flush -f
+            system("pkexec sudo systemctl service firewall2 stop");
         } else
             ui->statusLabel->setText("Stop FAILED!");
     }
@@ -688,4 +729,195 @@ void MainWindow::on_pushButton_addRule_clicked()
 void MainWindow::on_checklogbtn_clicked()
 {
     //system("pkexec 'cat /var/log/firewall | '");
+
+    QProcess::execute("bash", QStringList() << "-c" << "pkexec sudo cat /var/log/firewall > tmplog");
+
+    QString filename="tmplog";
+    QFile file(filename);
+    if(!file.exists()){
+        qDebug() << "no file "<<filename;
+    }else{
+        qDebug() << filename<<" found.";
+    }
+    QString line;
+    ui->logtabedit->clear();
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        QTextStream stream(&file);
+        while (!stream.atEnd()){
+            line = stream.readLine();
+            ui->logtabedit->setText(ui->logtabedit->toPlainText()+line+"\n");
+        }
+    }
+    file.close();
+
+}
+
+void MainWindow::on_pushButton_clicked()
+{
+  //  QProcess::execute("bash", QStringList() << "-c" << "pkexec cat /etc/sysconfig/iptables > tmpiptables");
+    QProcess::execute("bash", QStringList() << "-c" << "pkexec sudo iptables -L > tmpiptables");
+  //  QProcess::execute("bash", QStringList() << "-c" << "pkexec ip6tables -L > tmpiptables");
+
+ //   sudo iptables -S.
+        //    sudo iptables -S
+        //     sudo ip6tables -S
+      //      sudo iptables -L
+
+
+
+    QString filename="tmpiptables";
+    QFile file(filename);
+    if(!file.exists()){
+        qDebug() << "no file "<<filename;
+    }else{
+        qDebug() << filename<<" found.";
+    }
+    QString line;
+    ui->inspecttabedit->clear();
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        QTextStream stream(&file);
+        while (!stream.atEnd()){
+            line = stream.readLine();
+            ui->inspecttabedit->setText(ui->inspecttabedit->toPlainText()+line+"\n");
+
+        }
+    }
+    file.close();
+}
+
+void MainWindow::on_installfirewallbtn_clicked()
+{
+    QProcess::execute("bash", QStringList() << "-c" << "pkexec sudo cp ./scripts/firewall /etc/init.d/firewall; sudo cp ./scripts/firewall2.service /etc/systemd/system/firewall2.service");
+
+}
+
+void MainWindow::on_ServiceEnable_clicked()
+{
+    // check if system has systemctl like suse
+    QProcess::execute("bash", QStringList() << "-c" << "pkexec sudo systemctl firewall2 enable");
+
+}
+
+void MainWindow::on_DisableService_clicked()
+{
+    QProcess::execute("bash", QStringList() << "-c" << "pkexec sudo systemctl firewall2 disable");
+
+}
+
+void MainWindow::loadStyleSheet( QString sheet_name)
+{
+    QFile file(sheet_name);
+    file.open(QFile::ReadOnly);
+    QString styleSheet = QLatin1String(file.readAll());
+
+    qApp->setStyleSheet(styleSheet);
+}
+
+void MainWindow::on_cmbTheme_currentIndexChanged(const QString &arg1)
+{
+    if (loaded==true)
+    {
+    fileName=ui->cmbTheme->currentText();
+    QFile file(fileName);
+
+    file.open(QIODevice::Text | QIODevice::ReadOnly);
+    QString content;
+  //  while(!file.atEnd())
+    //   content.append(file.readLine());
+//    ui->code->setPlainText(content);
+  //  file.close();
+
+
+    loadStyleSheet(ui->cmbTheme->currentText());
+
+    QFile file2("themes.txt");
+        if(file2.open(QIODevice::ReadWrite | QIODevice::Text))// QIODevice::Append |
+        {
+                QTextStream stream(&file2);
+                file2.seek(0);
+               stream << "theme:" << ui->cmbTheme->currentText().toLatin1()<< endl;
+                for (int i = 0; i < ui->cmbTheme->count(); i++)
+                {
+                 stream << "theme:" << ui->cmbTheme->itemText(i) << endl;
+                }
+            //                file.write("\n");
+               file2.close();
+        }
+
+    if (ui->cmbTheme->currentText().toLatin1() != ""){
+      //   ui->cmbTheme->currentText().toLatin1();
+    }
+}
+}
+
+void MainWindow::on_Refresh_clicked()
+{
+//construct the new /scripts/firewall script to run.
+
+
+   // QString text = QString("sudo iptables -A INPUT -p %1 --dport %2 -j ACCEPT").arg(mInfo.proto.toLower(), mInfo.dpt);
+
+  //   QProcess::execute("/bin/sh", QStringList() << text);
+
+    ui->inspecttabedit->insertPlainText("#firewall rules");
+
+    // file open /scripts/firewall-off as a starter
+
+    QString filename="./scripts/firewall-off";
+    QFile file(filename);
+    if(!file.exists()){
+        qDebug() << "no file "<<filename;
+    }else{
+        qDebug() << filename<<" found.";
+    }
+    QString line;
+    if (file.open(QIODevice::ReadOnly | QIODevice::Text)){
+        QTextStream stream(&file);
+        while (!stream.atEnd()){
+            line = stream.readLine();
+            ui->inspecttabedit->insertPlainText(line+"\n");
+        }
+    }
+    file.close();
+
+
+    for (int i=0;i<ui->tableWidget_serviceRules->rowCount();i++) {
+        QString name = ui->tableWidget_serviceRules->item(i,0)->text();
+        /* Casting our objects from QTableWidgetItem to QComboBox/QSpinBox */
+        QSpinBox* port = qobject_cast<QSpinBox*>(ui->tableWidget_serviceRules->cellWidget(i,1));
+        QComboBox* protocol = qobject_cast<QComboBox*>(ui->tableWidget_serviceRules->cellWidget(i,2));
+        QComboBox* action = qobject_cast<QComboBox*>(ui->tableWidget_serviceRules->cellWidget(i,3));
+
+        ui->inspecttabedit->insertPlainText("#"+name.toLatin1()+"\n");
+        ui->inspecttabedit->insertPlainText( QString("sudo iptables -A INPUT -p %1 --dport %2 -j %3").arg(protocol->currentText().toLatin1(),
+                                                     port->text(),action->currentText().toLatin1()) + "\n");
+
+       }
+
+
+    //add custom rules to end of file
+    ui->inspecttabedit->insertPlainText(ui->plainTextEdit_customRules->document()->toPlainText().toLatin1());
+
+
+//    QString filename2="tmplog";
+//    QFile file2(filename2);
+//    if(!file2.exists()){
+//        qDebug() << "no file "<<filename;
+//    }else{
+//        qDebug() << filename<<" found.";
+//    }
+//    if (file2.open(QIODevice::ReadOnly | QIODevice::Text)){
+//        QTextStream stream2(&file2);
+//        while (!stream2.atEnd()){
+//            line = stream2.readLine();
+// ui->inspecttabedit->insertPlainText(line+"\n");
+//        }
+//    }
+//    file2.close();
+
+}
+
+void MainWindow::on_pushButton_saveRules_clicked()
+{
+
 }
